@@ -9,11 +9,11 @@
             @csrf
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" id="username" class="form-control" required autofocus>
+                <input type="text" name="loginusername" class="form-control" required autofocus>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
+                <input type="password" name="loginpassword"  class="form-control" required>
             </div>
             <div class="mb-3 text-end">
                 <a href="/register" class="text-decoration-none text-muted">Tidak punya akun? <span class="text-danger">Daftar</span></a>

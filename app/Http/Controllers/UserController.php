@@ -8,10 +8,6 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function showRegister(){
-        return view('register');
-    }
-
     public function register(Request $request) {
         $incomingFields = $request->validate([
             'username' => ['required', 'min:3', 'max:20'],
@@ -22,16 +18,13 @@ class UserController extends Controller
         $incomingFields['password'] = bcrypt($incomingFields['password']);
     
         $user = User::create($incomingFields);
+
         auth()->login($user);
     
-        return view('/homepage')->with('success', 'You have succesfully created an account');
+        return redirect('/')->with('success', 'You have succesfully created an account');
     }
 
-    public function showLogin(){
-        return view('login');
-    }
-
-    public function login(){
+    public function login(Request $request){
         $incomingFields = $request->validate([
             'loginusername' => 'required',
             'loginpassword' => 'required'
