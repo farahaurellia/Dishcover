@@ -1,10 +1,12 @@
 /* styles.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600&display=swap');
 
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Ensures consistent box model */
+  font-family: 'Assistant', sans-serif;
 }
 
 .content {
@@ -18,15 +20,19 @@ html, body {
 /* Navbar Container */
 .navbar {
   display: flex;
-  justify-content: space-between; /* test */
   align-items: center;
   background-color: #405A3F; /* Background navbar */
+  box-sizing: border-box;
   padding: 10px 20px; /* Jarak dalam */
   position: fixed; /* Tetap di atas */
   top: 0;
   width: 100%; /* Lebar penuh */
-  height: 60px;
+  height: 80px;
   z-index: 1000; /* Supaya di atas elemen lain */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  flex-wrap: nowrap; 
+  overflow: hidden;
 }
 
 /* Logo */
@@ -39,6 +45,7 @@ html, body {
   justify-content: center;
   align-items: center; /* Menempatkan logo di tengah lingkaran */
   margin-right: 10px;
+  margin-left: 20px;
 }
 
 /* Menu */
@@ -51,7 +58,8 @@ html, body {
 
 /* Menu Items */
 .navbar-menu li {
-  margin: 0 10px; /* Jarak antar item */
+  margin: 0 15px; /* Jarak antar item */
+  font-weight: bold;
 }
 
 /* Link Styles */
@@ -71,6 +79,10 @@ html, body {
   display: flex;
   align-items: center;
   gap: 20px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  flex-grow: 1;
+  margin-right: 30px;
 }
 
 .search-bar {
@@ -78,8 +90,7 @@ html, body {
   align-items: center;
   background-color: white;
   border-radius: 20px;
-  padding: 5px 10px;
-  margin-left: auto;
+  padding: 10px 20px;
 }
 
 .search-bar input {
@@ -93,7 +104,6 @@ html, body {
 .search-icon, .profile-icon {
 font-size: 20px;  /* Ukuran ikon */
 color: white;     /* Warna ikon */
-margin-left: 10px;
 }
 
 .search-icon:hover, .profile-icon:hover {
@@ -118,24 +128,23 @@ color: #75A47F;   /* Warna ikon saat hover */
 
 /* Carousel */
 .carousel {
-    width: 1200px;
-    height: 200px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9f9f9;
-    margin-top: 80px;
-    margin-left: 160px;
-    margin-right: 100px;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel img {
-    width: 100%;
-    height: 100%;
+    width: 1300px;
+    height: 250px;
     object-fit: cover;
+    object-position: center;
+    align-self: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 20px;
 }
 
 .carousel p {
@@ -148,7 +157,10 @@ color: #75A47F;   /* Warna ikon saat hover */
 .recipes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 50px;
+  width: 1300px;
+  height: 100%;
+  margin: 0 auto; /* Centers the grid horizontally */
 }
 
 .recipe-card {
@@ -157,24 +169,55 @@ color: #75A47F;   /* Warna ikon saat hover */
 
 .recipe-card img {
   width: 100%;
-  height: 200px;             
+  height: 170px;             
   object-fit: cover;       
   object-position: center;   
   border-bottom: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .recipe-info {
-  padding: 10px;
+  margin-top: 0px;
 }
 
 .recipe-info h3 {
   margin: 0;
 }
 
+.recipe-info p {
+  margin: 0;
+}
+
 .tags {
   display: flex;
-  justify-content: space-between;
   margin: 5px 0;
+  align-items: center;
 }
+
+.tags svg {
+  margin-right: 5px;
+}
+
+
+.porsi {
+  background-color: #E6A4B4;  
+  padding: 5px 10px 5px 5px;        
+  border-radius: 15px;
+  margin-right: 5px;
+  text-align: center;        
+  display: flex;
+  align-items: center;      
+  justify-content: center;
+}
+
+.waktu {
+  background-color: #BACD92;  
+  padding: 5px 10px 5px 5px;          
+  border-radius: 15px;
+  text-align: center;        
+  display: flex;
+  align-items: center;      
+  justify-content: center;
+}
+
 
