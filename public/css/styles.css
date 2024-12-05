@@ -161,6 +161,7 @@ color: #75A47F;   /* Warna ikon saat hover */
   object-fit: cover;       
   object-position: center;   
   border-bottom: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 .recipe-info {

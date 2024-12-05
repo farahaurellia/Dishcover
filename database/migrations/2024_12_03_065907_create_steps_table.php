@@ -11,8 +11,7 @@ return new class extends Migration
         Schema::create('steps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
-            $table->integer('nomor_urut');
-            $table->text('deskripsi_langkah');
+            $table->text('deskripsi_langkah', 2500);
             $table->timestamps();
         });
     }

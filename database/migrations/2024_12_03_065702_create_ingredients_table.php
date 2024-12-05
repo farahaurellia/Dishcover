@@ -11,9 +11,7 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
-            $table->string('nama_bahan', 100);
-            $table->decimal('jumlah', 10, 2);
-            $table->string('satuan', 50);
+            $table->string('nama_bahan', 2500);
             $table->timestamps();
         });
     }
