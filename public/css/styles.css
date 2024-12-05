@@ -1,0 +1,179 @@
+/* styles.css */
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures consistent box model */
+}
+
+.content {
+  padding-top: 60px; /* Adjust this to match the navbar height */
+  max-height: 100%; /* Ensure full height usage */
+  background-color: #ffff; /* Page background */
+}
+
+/* ===== HEADER =====*/
+
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* test */
+  align-items: center;
+  background-color: #405A3F; /* Background navbar */
+  padding: 10px 20px; /* Jarak dalam */
+  position: fixed; /* Tetap di atas */
+  top: 0;
+  width: 100%; /* Lebar penuh */
+  height: 60px;
+  z-index: 1000; /* Supaya di atas elemen lain */
+}
+
+/* Logo */
+.navbar-logo{
+  width: 50px; /* Ukuran lingkaran */
+  height: 50px; /* Ukuran lingkaran */
+  border-radius: 50%; /* Membuatnya menjadi lingkaran */
+  background-color: #fff; /* Warna latar belakang lingkaran */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Menempatkan logo di tengah lingkaran */
+  margin-right: 10px;
+}
+
+/* Menu */
+.navbar-menu {
+  list-style: none; /* Hilangkan bullet point */
+  display: flex;
+  margin: 10px; /* Hilangkan margin */
+  padding: 0; /* Hilangkan padding */
+}
+
+/* Menu Items */
+.navbar-menu li {
+  margin: 0 10px; /* Jarak antar item */
+}
+
+/* Link Styles */
+.navbar-menu a {
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: white; /* Warna teks */
+  font-size: 16px;
+  transition: color 0.3s ease; /* Animasi hover */
+}
+
+/* Hover Effect */
+.navbar-menu a:hover {
+  color: #75A47F; /* Warna saat hover */
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-left: auto;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+/* Contoh styling untuk ikon */
+.search-icon, .profile-icon {
+font-size: 20px;  /* Ukuran ikon */
+color: white;     /* Warna ikon */
+margin-left: 10px;
+}
+
+.search-icon:hover, .profile-icon:hover {
+color: #75A47F;   /* Warna ikon saat hover */
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .navbar-menu {
+    flex-direction: column; /* Menu jadi vertikal */
+    align-items: center;
+    display: none; /* Default tidak terlihat */
+  }
+
+  .navbar-menu.active {
+    display: flex; /* Tampilkan saat aktif */
+  }
+}
+
+
+/* ===== RECIPE CONTENTS =====*/
+
+/* Carousel */
+.carousel {
+    width: 1200px;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    margin-top: 80px;
+    margin-left: 160px;
+    margin-right: 100px;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel p {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+}
+
+/* Recipes Container */
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.recipe-card {
+  overflow: hidden;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px;             
+  object-fit: cover;       
+  object-position: center;   
+  border-bottom: 1px solid #ddd;
+}
+
+.recipe-info {
+  padding: 10px;
+}
+
+.recipe-info h3 {
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
