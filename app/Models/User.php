@@ -53,8 +53,8 @@ class User extends Authenticatable
         return $this->hasMany(History::class);
     }
 
-    public function profile()
+    public function profilePicture()
     {
-        return $this->hasOne(ProfilePicture::class);
+        return $this->belongsTo(ProfilePicture::class, 'picture_id');
     }
 }

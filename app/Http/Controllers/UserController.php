@@ -12,7 +12,8 @@ class UserController extends Controller
         $incomingFields = $request->validate([
             'username' => ['required', 'min:3', 'max:20'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8']
+            'password' => ['required', 'min:8'],
+            'picture_id' => DB::table('profile_pictures')->inRandomOrder()->first()
         ]);
     
         $incomingFields['password'] = bcrypt($incomingFields['password']);
@@ -38,6 +39,9 @@ class UserController extends Controller
         }
     }
 
-
+    public function logout(){
+        auth()->logout();
+        return redirect('/')->with('success', 'You are now logged out');
+    }
     
 }

@@ -10,10 +10,13 @@ html, body {
 }
 
 .content {
-  padding-top: 60px; /* Adjust this to match the navbar height */
   max-height: 100%; /* Ensure full height usage */
+  width: 100%;
   background-color: #ffff; /* Page background */
 }
 
+.greeting span{
+  color: #405A3F;
+}
 
 

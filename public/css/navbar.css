@@ -4,21 +4,31 @@
 
 /* Navbar Container */
 .navbar {
-    display: flex;
-    align-items: center;
-    background-color: #405A3F; /* Background navbar */
-    box-sizing: border-box;
-    padding: 10px 20px; /* Jarak dalam */
-    position: fixed; /* Tetap di atas */
-    top: 0;
-    width: 100%; /* Lebar penuh */
-    height: 80px;
-    z-index: 1000; /* Supaya di atas elemen lain */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    justify-content: space-between;
-    flex-wrap: nowrap; 
-    overflow: hidden;
-  }
+  display: flex;
+  align-items: center;
+  background-color: #405A3F; /* Background navbar */
+  box-sizing: border-box;
+  padding: 10px 20px; /* Padding inside navbar */
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  width: 100%; /* Full width */
+  height: 80px;
+  z-index: 1000; /* Ensure it's on top of other elements */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  flex-wrap: nowrap; 
+  overflow: hidden;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%; /* Content fills 90% of the navbar width */
+  max-width: 100%; /* Prevent exceeding full width */
+  margin: 0 auto; /* Center content if needed */
+}
+
   
   /* Logo */
   .navbar-logo{
@@ -30,7 +40,6 @@
     justify-content: center;
     align-items: center; /* Menempatkan logo di tengah lingkaran */
     margin-right: 10px;
-    margin-left: 20px;
   }
   
   /* Menu */
@@ -43,7 +52,7 @@
   
   /* Menu Items */
   .navbar-menu li {
-    margin: 0 15px; /* Jarak antar item */
+    margin: 0 10%; /* Jarak antar item */
     font-weight: bold;
   }
   
@@ -67,7 +76,6 @@
     justify-content: flex-end;
     flex-shrink: 0;
     flex-grow: 1;
-    margin-right: 30px;
   }
   
   .search-bar {
@@ -75,7 +83,7 @@
     align-items: center;
     background-color: white;
     border-radius: 20px;
-    padding: 10px 20px;
+    padding: 8px 20px;
   }
   
   .search-bar input {
@@ -86,9 +94,33 @@
   }
   
   /* Contoh styling untuk ikon */
-  .search-icon, .profile-icon {
-  font-size: 20px;  /* Ukuran ikon */
-  color: white;     /* Warna ikon */
+  .search-icon {
+    font-size: 20px;  /* Ukuran ikon */
+    color: white;     /* Warna ikon */
+  }
+  
+  .profile-icon {
+    font-size: 20px;  /* Ukuran ikon */
+    color: white;     /* Warna ikon */
+  }
+
+  .profile-icon img {
+    border-radius: 50%;
+  }
+
+  .profile-icon button{
+    background-color: transparent;
+    border: none;
+  }
+
+  .profile-icon button:hover{
+    background-color: transparent;
+    border: none;
+  }
+
+  .profile-icon button:focus{
+    background-color: transparent;
+    border: none;
   }
   
   .search-icon:hover, .profile-icon:hover {
@@ -107,3 +139,4 @@
       display: flex; /* Tampilkan saat aktif */
     }
   }
+  
