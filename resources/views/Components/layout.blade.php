@@ -45,7 +45,7 @@
                         <!-- Profile Icon -->
                         <div class="profile-icon">
                             <!-- Modal Trigger Button -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal">
                                 <i class="fas fa-user"></i> <!-- Font Awesome User Icon -->
                             </button>
                         </div>
