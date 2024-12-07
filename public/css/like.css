@@ -1,0 +1,116 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center; /* Posisikan di tengah secara horizontal */
+    align-items: center;    /* Posisikan di tengah secara vertikal */
+    height: 80vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
+    width: 100%;            /* Lebar penuh */
+    background-color: #ffffff; /* Pastikan background putih */
+    text-align: center;
+    top: 50%; /* Posisikan elemen 50% dari atas layar */
+    left: 50%; /* Posisikan elemen 50% dari kiri layar */
+}
+
+  
+  .header {
+    background-color: #287428; /* Dark green for the header */
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    /* Style your logo appropriately */
+  }
+  
+  .nav-item {
+    margin-left: 20px;
+  }
+  
+  .content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .empty-message {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .empty-message .cta {
+    color: #287428; /* Green for the call to action */
+    text-decoration: none;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center; /* Menempatkan konten di tengah secara horizontal */
+    align-items: center; /* Menempatkan konten di tengah secara vertikal */
+    margin: 10px 0;
+    width: 100%; /* Pastikan elemen mengambil lebar penuh */
+    gap: 10px;
+    padding: 30px;
+}
+
+.containerLike {
+    display: flex;
+    justify-content: center; /* Posisikan di tengah secara horizontal */
+    align-items: center;    /* Posisikan di tengah secara vertikal */
+    height: 80vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
+    width: 100%;            /* Lebar penuh */
+    background-color: #ffffff; /* Pastikan background putih */
+    text-align: center;
+    top: 50%; /* Posisikan elemen 50% dari atas layar */
+    left: 50%; /* Posisikan elemen 50% dari kiri layar */
+    margin: 30px 0;
+    padding-bottom: 40px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.heart-icon {
+    float: center;
+  }
+
+.title-text {
+    font-size: 25px; /* Ukuran font untuk elemen h1 */
+    font-weight: bold;
+    shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan */
+}
+
+.titleLike{
+    display: flex;
+    justify-content: center; /* Menempatkan konten di tengah secara horizontal */
+    align-items: center; /* Menempatkan konten di tengah secara vertikal */
+    margin: 10px 0;
+    width: 100%; /* Pastikan elemen mengambil lebar penuh */
+    gap: 10px;
+    padding: 15px;
+}
+
+.btnlike {
+    background-color: #3c763d;
+    color: #fff;
+    padding: 9px 15px; /* Atur jarak di dalam tombol */
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan */
+    text-align: center; /* Pastikan teks di tengah */
+    margin: 50px 0;
+}
+
+
+
