@@ -8,18 +8,12 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('profile_pictures', function (Blueprint $table) {
-            $table->id();
-            $table->string('url'); // URL or file path for the image
-            $table->timestamps();
-        });
-
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username', 50)->unique();
             $table->string('password');
             $table->string('email')->unique();
-            $table->foreignId('picture_id')->constrained('profile_pictures')->onDelete('cascade');
+            $table->string('profilepicture_url', 255);
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->rememberToken();
@@ -44,7 +38,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('profile_pictures');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

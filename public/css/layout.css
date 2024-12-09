@@ -1,12 +1,12 @@
 /* styles.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Ensures consistent box model */
-  font-family: 'Assistant', sans-serif;
+  font-family: 'Poppins',Times;
 }
 
 .content {
@@ -15,8 +15,111 @@ html, body {
   background-color: #ffff; /* Page background */
 }
 
+.greeting {
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
 .greeting span{
   color: #405A3F;
 }
 
+.modal-dialog-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-login {
+  border-radius: 20px;
+  height: 380px;
+  width: 400px;
+  padding: 10px;
+}
+
+.modal-header-login {
+  border: 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modal-title-login {
+  font-weight: bold;
+}
+
+.form-login .form-control {
+  border: 3px solid#75A47F; 
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.modal-body-login button{
+  background-color: #75A47F;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  width: 120px;
+  height: 45px;
+  border-radius: 10px;
+}
+
+.modal-body-login button:hover{
+  background-color: #699472;
+  color: white;
+  border: 0;
+}
+
+.btn-login-container {
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+}
+
+
+
+
+.modal-body-user {
+  padding: 20px 0px 0px 0px;
+}
+
+.modal-dialog-custom {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 250px;
+  height: 190px;
+  margin: 0;
+  transform: none;
+}
+
+.btn-logout {
+  display: flex;
+  background-color : #F6664E; 
+  color:white; 
+  width: 100%;
+  border: none;
+  border-radius: 0px 0px 10px 10px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-logout form {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-logout button {
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-logout:hover {
+  background-color: #e55a5a;
+  color: white;
+}
 

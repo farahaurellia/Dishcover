@@ -5,25 +5,31 @@
     width: 100%;
     height: 300px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+
+  .carousel-inner {
+    height: 100%;
+  }
+
+  .carousel-item {
+    position: relative; /* Make it a positioned container for the absolute positioning of the image */
+    height: 100%; /* Ensure the carousel item takes up the full height */
   }
   
-  .carousel img {
-      width: 90%;
-      height: 250px;
-      object-fit: cover;
-      object-position: center;
-      margin-bottom: 10px;
-      border-radius: 20px;
+  .carousel-item img {
+    position: absolute; /* Position the image absolutely within the .carousel-item */
+    top: 50%; /* Move it 50% from the top */
+    left: 50%; /* Move it 50% from the left */
+    transform: translate(-50%, -50%); /* Offset it by 50% of its own width and height */
+    width: 90%; /* Adjust as necessary to ensure it covers the width */
+    height: 90%; /* Ensure the image takes up the full height of the carousel item */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 20px;
   }
   
-  .carousel p {
-      font-size: 16px;
-      color: #555;
-      text-align: center;
-  }
+
+
+
   
   /* Recipes Container */
   .recipes {

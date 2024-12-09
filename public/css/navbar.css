@@ -12,7 +12,7 @@
   position: fixed; /* Fixed at the top */
   top: 0;
   width: 100%; /* Full width */
-  height: 80px;
+  height: 90px;
   z-index: 1000; /* Ensure it's on top of other elements */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   justify-content: space-between;
@@ -32,8 +32,8 @@
   
   /* Logo */
   .navbar-logo{
-    width: 50px; /* Ukuran lingkaran */
-    height: 50px; /* Ukuran lingkaran */
+    width: 60px; /* Ukuran lingkaran */
+    height: 60px; /* Ukuran lingkaran */
     border-radius: 50%; /* Membuatnya menjadi lingkaran */
     background-color: #fff; /* Warna latar belakang lingkaran */
     display: flex;
@@ -60,7 +60,7 @@
   .navbar-menu a {
     text-decoration: none; /* Hilangkan garis bawah */
     color: white; /* Warna teks */
-    font-size: 16px;
+    font-size: 20px;
     transition: color 0.3s ease; /* Animasi hover */
   }
   
@@ -99,28 +99,10 @@
     color: white;     /* Warna ikon */
   }
   
-  .profile-icon {
-    font-size: 20px;  /* Ukuran ikon */
-    color: white;     /* Warna ikon */
-  }
-
-  .profile-icon img {
+  .profile-icon img{
+    height: 5px;
+    width: 5px;
     border-radius: 50%;
-  }
-
-  .profile-icon button{
-    background-color: transparent;
-    border: none;
-  }
-
-  .profile-icon button:hover{
-    background-color: transparent;
-    border: none;
-  }
-
-  .profile-icon button:focus{
-    background-color: transparent;
-    border: none;
   }
   
   .search-icon:hover, .profile-icon:hover {
@@ -139,4 +121,3 @@
       display: flex; /* Tampilkan saat aktif */
     }
   }
-  

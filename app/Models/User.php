@@ -17,6 +17,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'profilepicture_url'
     ];
 
     protected $hidden = [
@@ -51,10 +52,5 @@ class User extends Authenticatable
     public function history()
     {
         return $this->hasMany(History::class);
-    }
-
-    public function profilePicture()
-    {
-        return $this->belongsTo(ProfilePicture::class, 'picture_id');
     }
 }
