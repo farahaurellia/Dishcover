@@ -34,6 +34,11 @@ Route::get('/like', function () {
     return view('like');
 });
 
+# HISTORY #
+Route::get('/history', function () {
+    return view('history');
+});
+
 # SEARCH # 
 Route::get('/search', [RecipeController::class, 'search']);
 
