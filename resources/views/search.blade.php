@@ -1,36 +1,20 @@
 <x-layout>
     @push('styles')
-        <link rel="stylesheet" href="{{ asset('css/contentresep.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
     @endpush 
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div class="recipes">
-                @foreach ($recipes as $recipe)
-                <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
+    <div class="search-page">
+    <div class="title">
+        <a href="/" class="back-btn">
+            <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57167 20.0001L17.3567 31.7851L15 34.1417L2.03667 21.1784C1.72422 20.8659 1.54869 20.442 1.54869 20.0001C1.54869 19.5581 1.72422 19.1343 2.03667 18.8217L15 5.8584L17.3567 8.21506L5.57167 20.0001Z" fill="black"/>
+            </svg>
+        </a>  
+        <div class="title-text">
+            <p> Hasil untuk <span>{{$query}}</span></p>
+        </div>  
+    </div>
+    <div class="recipes">
+        @forelse ($recipes as $recipe)
                     <div class="recipe-card">
                         <div class="image-wrapper">                        
                             <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
@@ -67,7 +51,9 @@
                             <p>Recipe by {{ $recipe->user->username }}</p>
                         </div>
                     </div>
-                </a>
-                @endforeach
-            </div>
+            @empty 
+                <p>No recipes found.</p>
+            @endforelse
+    </div>
+    </div>
 </x-layout>

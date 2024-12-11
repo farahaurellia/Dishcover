@@ -15,8 +15,9 @@ class Recipe extends Model
         'user_id',
         'judul',
         'deskripsi',
+        'image_url',
         'porsi',
-        'waktu',
+        'waktu',       
     ];
 
     public function user()

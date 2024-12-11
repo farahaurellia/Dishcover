@@ -2,7 +2,6 @@
 @push('styles')
         <link rel="stylesheet" href="{{ asset('css/like.css') }}">
 @endpush 
-
 @if (Auth::check())
     <div class="container">
         <div class="content">

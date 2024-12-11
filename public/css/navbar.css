@@ -48,12 +48,13 @@
     display: flex;
     margin: 10px; /* Hilangkan margin */
     padding: 0; /* Hilangkan padding */
+    width: 350px;
   }
   
   /* Menu Items */
   .navbar-menu li {
-    margin: 0 10%; /* Jarak antar item */
-    font-weight: bold;
+    margin: 0 7%; /* Jarak antar item */
+    font-weight:500;
   }
   
   /* Link Styles */
@@ -120,4 +121,9 @@
     .navbar-menu.active {
       display: flex; /* Tampilkan saat aktif */
     }
+  }
+
+  .recipes a{
+    text-decoration: none; 
+    color: black;
   }

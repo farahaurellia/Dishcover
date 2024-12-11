@@ -22,20 +22,24 @@
                 <ul class="navbar-menu">
                     <li><a href="#history">History</a></li>
                     <li><a href="/like">Like</a></li>
+                    @if (Auth::check())
                     <li><a href="#upload">Upload</a></li>
+                    @else 
+                    <li><a href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal">Upload</a></li>
+                    @endif
                 </ul>
                 
                 <!-- Right Section -->
                 <div class="right-section">
                     <!-- Search Bar -->
-                    <div class="search-bar">
-                        <input type="text" placeholder="search" />
+                    <form action="/search" method="GET" class="search-bar">
+                        <input type="text" placeholder="search" name="query" />
                         <span class="search-icon"></span>
                         <svg width="26" height="25" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.5 25C20.7132 25 25.75 19.9632 25.75 13.75C25.75 7.5368 20.7132 2.5 14.5 2.5C8.2868 2.5 3.25 7.5368 3.25 13.75C3.25 19.9632 8.2868 25 14.5 25Z" stroke="black" stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M24.4124 25.862C25.0749 27.862 26.5874 28.062 27.7499 26.312C28.8124 24.712 28.1124 23.3995 26.1874 23.3995C24.7624 23.387 23.9624 24.4995 24.4124 25.862Z" stroke="black" stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                    </div>
+                        </svg>
+                    </form>
                     
                     @auth
 

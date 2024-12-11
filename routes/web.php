@@ -16,9 +16,6 @@ Route::get('/register', function () {
 Route::post('/register', [UserController::class, "register"])->name('register');
 
 # LOGIN #
-// Route::get('/login', function(){
-//     return view('login');
-// });
 Route::post('/login', [UserController::class, "login"])->name('login');
 Route::post('/logout', [UserController::class, "logout"])->name('logout');
 
@@ -36,3 +33,9 @@ Route::post('/recipe/{recipe_id}/comment', [CommentController::class, 'addCommen
 Route::get('/like', function () {
     return view('like');
 });
+
+# SEARCH # 
+Route::get('/search', [RecipeController::class, 'search']);
+
+# VIEW # 
+Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('show');

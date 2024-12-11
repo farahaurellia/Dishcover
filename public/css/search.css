@@ -1,38 +1,33 @@
-/* ===== RECIPE CONTENTS =====*/
+ /* Recipes Container */
 
-/* Carousel */
-.carousel {
+ .search-page {
     width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
+ }
+ .title {
+    font-weight: bold;
+    font-size: 25px;
+    padding: 30px 20px 20px 20px;
+    width: 90%;
+    margin: 0 auto; 
+ }
 
-  .carousel-inner {
-    height: 100%;
-  }
+ .title-text{
+    width: 95%;
+    display: inline-block;
+    text-align: center;
+ }
 
-  .carousel-item {
-    position: relative; /* Make it a positioned container for the absolute positioning of the image */
-    height: 100%; /* Ensure the carousel item takes up the full height */
-  }
-  
-  .carousel-item img {
-    position: absolute; /* Position the image absolutely within the .carousel-item */
-    top: 50%; /* Move it 50% from the top */
-    left: 50%; /* Move it 50% from the left */
-    transform: translate(-50%, -50%); /* Offset it by 50% of its own width and height */
-    width: 90%; /* Adjust as necessary to ensure it covers the width */
-    height: 90%; /* Ensure the image takes up the full height of the carousel item */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border-radius: 20px;
-  }
-  
+ .title-text span{
+    color: #E6A4B4;
+ }
 
+ .back-btn{
+    left: 0;
+    display: inline-block;
+    /* padding-left: 30px; */
+ }
 
-
-  
-  /* Recipes Container */
-  .recipes {
+ .recipes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     column-gap: 50px;
