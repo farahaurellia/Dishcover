@@ -30,14 +30,10 @@ Route::get('/recipes/{recipe_id}/comments', [RecipeController::class, 'showComme
 Route::post('/recipe/{recipe_id}/comment', [CommentController::class, 'addComment'])->name('comment.addComment');
 
 # LIKE #
-Route::get('/like', function () {
-    return view('like');
-});
+Route::get('/like', [UserController::class, 'like']);
 
 # HISTORY #
-Route::get('/history', function () {
-    return view('history');
-});
+Route::get('/history', [UserController::class, 'history']);
 
 # SEARCH # 
 Route::get('/search', [RecipeController::class, 'search']);

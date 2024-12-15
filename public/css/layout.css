@@ -12,7 +12,7 @@ html, body {
 .content {
   max-height: 100%; /* Ensure full height usage */
   width: 100%;
-  background-color: #ffff; /* Page background */
+  background-color: #F5F5F5; /* Page background */
 }
 
 .greeting {

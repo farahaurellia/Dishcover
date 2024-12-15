@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use App\Models\Step;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {    
@@ -51,6 +54,13 @@ class RecipeController extends Controller
 
         $steps = Step::findorFail($id);
         $langkah = explode(';', $steps->deskripsi_langkah);
+
+        if (Auth::check()) {
+            History::create([
+                'user_id' => Auth::id(),
+                'recipe_id' => $id
+            ]);
+        }
         return view('show', compact('recipe', 'bahan', 'langkah'));
     }
 

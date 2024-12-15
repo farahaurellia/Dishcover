@@ -1,7 +1,12 @@
  /* Recipes Container */
 
+.body {
+  height: 100%;
+}
+
  .search-page {
     width: 100%;
+    height: 100vh;
  }
  .title {
     font-weight: bold;
@@ -41,6 +46,10 @@
   .recipe-card {
     overflow: hidden;
   }
+
+  .recipe-card:hover {
+    color: #405A3F;
+  }
   
   .recipe-card img {
     width: 100%;
@@ -60,7 +69,16 @@
     object-position: center;   
     border-bottom: 1px solid #ddd;
     border-radius: 15px;
+    overflow: hidden;
 }
+
+.image-wrapper img{
+  transition: transform 0.3s ease;
+  }
+  
+  .image-wrapper img:hover{
+  transform: scale(1.1);
+  }
 
 .like-button {
     position: absolute;
@@ -102,25 +120,30 @@
     font-size: 13px;
   }
   
-  .tags svg {
-    margin-right: 5px;
+  .tags img {
+    width: 20px;
+    height: 20px;
+    margin: 0 3px 0 3px;
+    fill: #F6664E !important;
   }
   
   .porsi {
-    background-color: #E6A4B4;  
     padding: 3px 7px 3px 3px;        
     border-radius: 15px;
     margin-right: 5px;
     text-align: center;        
     display: flex;
+    border: 2px solid #F6664E;
+    color: #F6664E;
   }
   
   .waktu {
-    background-color: #BACD92;  
     padding: 3px 6px 3px 3px;          
     border-radius: 15px;
     text-align: center;        
     display: flex;
+    border: 2px solid #F6664E;
+    color: #F6664E;
   }
   
   

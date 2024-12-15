@@ -5,6 +5,11 @@
     <div class="container-view">
         <div class="container-content">
             <div class="left-side">
+                <a  onclick="window.history.back();" class="back-btn">
+                    <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57167 20.0001L17.3567 31.7851L15 34.1417L2.03667 21.1784C1.72422 20.8659 1.54869 20.442 1.54869 20.0001C1.54869 19.5581 1.72422 19.1343 2.03667 18.8217L15 5.8584L17.3567 8.21506L5.57167 20.0001Z" fill="black"/>
+                    </svg>
+                </a> 
                 <div class="left-section">
                     <div class="img-wrapper">
                         <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
@@ -32,9 +37,9 @@
             <div class="right-side">
                 <div class= "container-show">
                     <div class="judul">
-                        <h5>{{ $recipe->judul}}</h5>
+                        <h4>{{ $recipe->judul}}</h4>
+                        <h6>Recipe by <span style="color: pink"> {{ $recipe->user->username }} </span></h6>
                     </div>
-                    <p>Recipe by <span style="color: pink"> {{ $recipe->user->username }} </span></p>
                 <p> Bahan-bahan: </p>
                 <ul>
                     @foreach ($bahan as $item)

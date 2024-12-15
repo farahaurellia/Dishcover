@@ -6,7 +6,7 @@
 }
 
 .left-side {
-    background-color: #FFFFFF;
+    background-color: #405A3F;
     color: #101010;
     padding: 40px;
     flex: 1;
@@ -41,7 +41,7 @@
 }
 
 .judul{
-  font-size: 50px;
+  font-weight: bold;
 }
 
 .img-wrapper {
@@ -108,3 +108,4 @@
     font-weight: bold;
     font-size: 20px;
   }
+
