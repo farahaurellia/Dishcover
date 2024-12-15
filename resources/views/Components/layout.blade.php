@@ -24,7 +24,7 @@
                     <li><a href="/history">History</a></li>
                     <li><a href="/like">Like</a></li>
                     @if (Auth::check())
-                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="/upload">Upload</a></li>
                     @else 
                     <li><a href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal">Upload</a></li>
                     @endif
