@@ -1,7 +1,9 @@
-<x-layout>
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('css/show.css') }}">
-    @endpush 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+</head>
+<body>
     <div class="container-view">
         <div class="container-content">
             <div class="left-side">
@@ -56,4 +58,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</body>

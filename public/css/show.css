@@ -1,28 +1,28 @@
 .container-content {
-    background-color: #ffffff;
     width: 100%;
     height: 100%;
     display: flex;
 }
 
 .left-side {
-    background-color: #405A3F;
-    color: #101010;
-    padding: 40px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-    width: 150px;
-    font-weight: bold;
-    font-size: 30px;
-} 
-
-.left-section {
-  height: 100%;
+  position: fixed;
+  background-color: #405A3F;
+  color: #101010;
+  padding: 40px;
+  flex: 1; /* Mengatur fleksibilitas */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh; /* Mengisi penuh tinggi viewport */
+  width: 45%; /* Pastikan lebar penuh */
+  font-weight: bold;
+  font-size: 30px;
+  box-sizing: border-box; /* Termasuk padding dalam width dan height */
+  z-index: 40%; /* Sesuaikan nilai z-index sesuai kebutuhan */
+  max-height: 100vh;
 }
+
 
 .right-side {
   position: absolute;
@@ -32,13 +32,15 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Konten mulai dari atas */
   align-items: center;
-  height: 100%;
-  width: 60%;
+  height: 100vh; /* Batasi tinggi maksimum ke viewport */
+  width: 50%;
   box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.142);
   border-radius: 30px 0 0 30px;
+  overflow-y: auto; /* Scroll otomatis jika konten melebihi tinggi */
 }
+
 
 .judul{
   font-weight: bold;
@@ -59,6 +61,7 @@
     height: 250px; /* Maintains the image's aspect ratio */
     object-fit: cover; /* Ensures the image fills the wrapper without stretching */
     display: block; 
+    object-fit: cover;
 }
 
 .recipe-info {
