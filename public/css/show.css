@@ -54,7 +54,7 @@
 
 .img-wrapper {
   width: 90%;
-  height: 270px; /* Menambah sedikit tinggi */
+  height: 450px; /* Menambah sedikit tinggi */
   overflow: hidden;
   position: relative;
   display: flex;
@@ -64,7 +64,7 @@
 
 .img-wrapper img {
   width: 400px;
-  height: 250px;
+  height: 450px;
   object-fit: cover;
   display: block;
   transform: translateY(-10px);
@@ -189,3 +189,29 @@
   fill: #3b4f38; /* Warna sedikit lebih gelap saat hover */
 }
 
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateX(-10px); /* Geser ke kiri sebanyak 10px */
+}
+
+.like-button svg {
+  margin-right: 8px;
+  transition: fill 0.3s ease;
+}
+
+.like-button.liked {
+  color:#E35778; /* Warna teks merah ketika disukai */
+}
+
+.like-button.liked svg {
+  fill:#E35778; /* Warna ikon merah ketika disukai */
+}
+
+
+    
