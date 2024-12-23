@@ -30,6 +30,7 @@
 }
 
 
+
 .right-side {
   position: absolute;
   background-color: white;
@@ -52,22 +53,25 @@
 }
 
 .img-wrapper {
-    width: 90%;
-    height: 250px;
-    overflow: hidden; /* Ensures the image doesn’t overflow */
-    position: relative;
-    border-radius: 15%;
-    display: flex;
-    justify-content: center;
+  width: 90%;
+  height: 270px; /* Menambah sedikit tinggi */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-left: 100px;
 }
 
 .img-wrapper img {
-    width: 400px; /* Makes the image responsive */
-    height: 250px; /* Maintains the image's aspect ratio */
-    object-fit: cover; /* Ensures the image fills the wrapper without stretching */
-    display: block; 
-    object-fit: cover;
+  width: 400px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transform: translateY(-10px);
 }
+
+
+
 
 .recipe-info {
     margin: 0px;
@@ -81,7 +85,8 @@
   
   .recipe-info p {
     margin: 0;
-    font-size: 13px;
+    font-size: 20px;
+    color: #fff;
   }
   
   .tags {
@@ -133,13 +138,54 @@
     width: 40px; /* Lebar tombol */
     height: 40px; /* Tinggi tombol */
     border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
     cursor: pointer; /* Menunjukkan tombol bisa diklik */
     fill: white;
 }
 
 .back-btn:hover {
-    fill: #BACD92;
-    transition: background-color 0.3s ease; /* Efek transisi */
+  transform: scale(1.1); /* Efek zoom saat hover */
+}
+
+.back-btn svg path {
+  fill: white; /* Warna ikon SVG */
+  transition: fill 0.3s ease; /* Animasi warna */
+}
+
+.back-btn:hover svg path {
+  fill: #BACD92; /* Warna ikon saat hover */
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.username {
+  font-weight: bold;
+}
+.comment-box {
+  margin-top: 15px;
+}
+
+.btn-btn-comment svg {
+  width: 36px;
+  height: 29px;
+  fill: #405A3F;
+}
+
+.btn-btn-comment {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.btn-btn-comment:hover svg {
+  fill: #3b4f38; /* Warna sedikit lebih gelap saat hover */
 }
 

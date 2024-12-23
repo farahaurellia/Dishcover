@@ -8,11 +8,11 @@
 <body>
     <div class="container-view">
         <div class="container-content">
-            <div class="left-side">
-            <a onclick="window.history.back();" class="back-btn">
-                <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57167 20.0001L17.3567 31.7851L15 34.1417L2.03667 21.1784C1.72422 20.8659 1.54869 20.442 1.54869 20.0001C1.54869 19.5581 1.72422 19.1343 2.03667 18.8217L15 5.8584L17.3567 8.21506L5.57167 20.0001Z" fill="white"/>
-                </svg>
+        <div class="left-side">
+             <a onclick="window.history.back();" class="back-btn">
+                 <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57167 20.0001L17.3567 31.7851L15 34.1417L2.03667 21.1784C1.72422 20.8659 1.54869 20.442 1.54869 20.0001C1.54869 19.5581 1.72422 19.1343 2.03667 18.8217L15 5.8584L17.3567 8.21506L5.57167 20.0001Z" />
+                 </svg>
             </a>
                 <div class="left-section">
                     <div class="img-wrapper">
@@ -30,9 +30,14 @@
                                 <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11 18.7913C15.3033 18.7913 18.7917 15.3029 18.7917 10.9997C18.7917 6.69646 15.3033 3.20801 11 3.20801C6.69682 3.20801 3.20837 6.69646 3.20837 10.9997C3.20837 15.3029 6.69682 18.7913 11 18.7913Z" stroke="black"/>
                                     <path d="M15.125 10.9993H11.2292C11.1684 10.9993 11.1101 10.9752 11.0671 10.9322C11.0241 10.8893 11 10.831 11 10.7702V7.79102" stroke="black" stroke-linecap="round"/>
-                                    </svg>                                                       
+                                </svg>                                                       
                                 {{ $recipe->waktu }} minutes
                             </span>
+                            <button type="button" class="btn btn-comment" data-bs-toggle="modal" data-bs-target="#commentModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="29" viewBox="0 0 36 29" fill="none">
+                                <path d="M1.5 30.6615L4.425 20.879C3.95 19.8813 3.59375 18.8592 3.35625 17.8128C3.11875 16.7665 3 15.6957 3 14.6007C3 12.5809 3.39375 10.6828 4.18125 8.90642C4.96875 7.13001 6.0375 5.58477 7.3875 4.2707C8.7375 2.95664 10.325 1.91634 12.15 1.1498C13.975 0.383268 15.925 0 18 0C20.075 0 22.025 0.383268 23.85 1.1498C25.675 1.91634 27.2625 2.95664 28.6125 4.2707C29.9625 5.58477 31.0312 7.13001 31.8187 8.90642C32.6062 10.6828 33 12.5809 33 14.6007C33 16.6205 32.6062 18.5185 31.8187 20.295C31.0312 22.0714 29.9625 23.6166 28.6125 24.9307C27.2625 26.2447 25.675 27.285 23.85 28.0516C22.025 28.8181 20.075 29.2014 18 29.2014C16.875 29.2014 15.775 29.0858 14.7 28.8546C13.625 28.6234 12.575 28.2767 11.55 27.8143L1.5 30.6615ZM5.925 26.3543L10.725 24.9672C11.075 24.8699 11.4313 24.8333 11.7938 24.8577C12.1562 24.882 12.5 24.9672 12.825 25.1132C13.625 25.5025 14.4625 25.7946 15.3375 25.9892C16.2125 26.1839 17.1 26.2812 18 26.2812C21.35 26.2812 24.1875 25.1497 26.5125 22.8866C28.8375 20.6235 30 17.8615 30 14.6007C30 11.3399 28.8375 8.57791 26.5125 6.3148C24.1875 4.05169 21.35 2.92014 18 2.92014C14.65 2.92014 11.8125 4.05169 9.4875 6.3148C7.1625 8.57791 6 11.3399 6 14.6007C6 15.4767 6.1 16.3406 6.3 17.1923C6.5 18.044 6.8 18.8592 7.2 19.6379C7.375 19.9543 7.46875 20.2889 7.48125 20.6417C7.49375 20.9946 7.45 21.3413 7.35 21.682L5.925 26.3543ZM16.5 20.441H19.5V16.0608H24V13.1406H19.5V8.76042H16.5V13.1406H12V16.0608H16.5V20.441Z" fill="#405A3F"/></svg>
+                            </svg>
+                            </button>
                         </div>
                         <p>{{ $recipe->deskripsi }}</p>
                     </div>
@@ -60,4 +65,32 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentModalLabel">Add a Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="profile-image"></div>
+            <div class="ms-3">
+                <div class="username">UsernameUser</div>
+                <div class="user-comment">"Isi komentar sebelumnya."</div>
+            </div>
+        </div>
+      <div class="modal-body">
+        <form action="/submit-comment" method="POST">
+          @csrf
+          <div class="mb-3">
+            <label for="commentText" class="form-label"style="color: black;" >Your Comment</label>
+            <textarea class="form-control" id="commentText" name="comment" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-submit" style="background-color: #405A3F; color: white; border: none; padding: 10px 15px; border-radius: 5px;">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
