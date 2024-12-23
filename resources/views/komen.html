@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Komentar</title>
+    <!-- Link ke Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        .username {
+            font-weight: bold;
+        }
+        .comment-box {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tombol Komentar -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 18.7913C15.3033 18.7913 18.7917 15.3029 18.7917 10.9997C18.7917 6.69646 15.3033 3.20801 11 3.20801C6.69682 3.20801 3.20837 6.69646 3.20837 10.9997C3.20837 15.3029 6.69682 18.7913 11 18.7913Z" stroke="white"/>
+        </svg>
+        Comment
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Komentar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Profil User -->
+                    <div class="d-flex align-items-center">
+                        <div class="profile-image"></div>
+                        <div class="ms-3">
+                            <div class="username">UsernameUser</div>
+                            <div class="user-comment">"Isi komentar sebelumnya."</div>
+                        </div>
+                    </div>
+                    <!-- Input Komentar -->
+                    <div class="comment-box">
+                        <textarea class="form-control" rows="4" placeholder="Tulis komentar Anda di sini..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link ke Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
