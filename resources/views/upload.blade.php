@@ -18,59 +18,70 @@
                 <p>Unggah Resepmu!</p>
             </div>
         </div>
-            <div class="right-section">
-                <form action="/upload" method="POST" id="upload-form" class="upload">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="imageUpload" class="form-label">Unggah foto masakanmu</label>
-                        <input type="file" class="form-control" id="imageUpload" accept="image/*">
+        <div class="right-section">
+            <form action="/upload" method="POST" id="upload-form" class="upload" enctype="multipart/form-data">
+                @csrf
+                <!-- Image Upload -->
+                <div class="mb-3">
+                    <label for="imageUpload" class="form-label">Unggah foto masakanmu</label>
+                    <input type="file" name="image" class="form-control" id="imageUpload" accept="image/*" required>
+                </div>
+
+                <!-- Title, Time, and Portion -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="judul" class="form-label">Judul</label>
+                        <input type="text" name="judul" class="form-control" id="judul" placeholder="..." required maxlength="200">
                     </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="exampleFormControlTextarea1" class="form-label">Judul</label>
-                            <input type="text" class="form-control" placeholder="..." aria-label="First name">
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlTextarea1" class="form-label">Waktu
-                                <img src="{{ asset('icons/waktu-h.svg') }}" alt="waktu">
-                            </label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <span class="input-group-text" id="basic-addon2">Minutes</span>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlTextarea1" class="form-label">Porsi
-                                <img src="{{ asset('icons/porsi-h.svg') }}" alt="porsi">
-                            </label>
-                            <input type="text" class="form-control" placeholder="..." aria-label="Last name">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                        <textarea class="form-control"  placeholder="..." id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="with-info mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Bahan-bahan
-                            <p class="input-info">
-                                *Gunakan semicolon (;) untuk memisahkan bahan-bahan anda! 
-                            </p>
+                    <div class="col">
+                        <label for="waktu" class="form-label">Waktu
+                            <img src="{{ asset('icons/waktu-h.svg') }}" alt="waktu">
                         </label>
-                        <textarea class="form-control"  placeholder="..." id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <div class="input-group">
+                            <input type="number" name="waktu" class="form-control" id="waktu" placeholder="..." required>
+                            <span class="input-group-text">Minutes</span>
+                        </div>
                     </div>
-                    <div class=" with-info mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Langkah-langkah
-                            <p class="input-info">
-                                *Gunakan semicolon (;) untuk memisahkan Langkah-langkah anda! 
-                            </p>
+                    <div class="col">
+                        <label for="porsi" class="form-label">Porsi
+                            <img src="{{ asset('icons/porsi-h.svg') }}" alt="porsi">
                         </label>
-                        <textarea class="form-control"  placeholder="..." id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <input type="number" name="porsi" class="form-control" id="porsi" placeholder="..." required>
                     </div>
-                    <div class="submit-btn">
-                        <button type="submit" class="submit-button">Upload</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" placeholder="..." rows="3" maxlength="500"></textarea>
+                </div>
+
+                <!-- Ingredients -->
+                <div class="with-info mb-3">
+                    <label for="bahan" class="form-label">Bahan-bahan
+                        <p class="input-info">
+                            *Gunakan semicolon (;) untuk memisahkan bahan-bahan anda! 
+                        </p>
+                    </label>
+                    <textarea name="bahan" class="form-control" id="bahan" placeholder="..." rows="3" required></textarea>
+                </div>
+
+                <!-- Steps -->
+                <div class="with-info mb-3">
+                    <label for="langkah" class="form-label">Langkah-langkah
+                        <p class="input-info">
+                            *Gunakan semicolon (;) untuk memisahkan langkah-langkah anda! 
+                        </p>
+                    </label>
+                    <textarea name="langkah" class="form-control" id="langkah" placeholder="..." rows="3" required></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-btn">
+                    <button type="submit" class="submit-button">Upload</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

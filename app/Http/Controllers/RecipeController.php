@@ -10,23 +10,46 @@ use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {    
-    public function upload(Request $request){
+    public function upload(Request $request)
+    {
         $incomingFields = $request->validate([
-            'judul' => ['required'],
-            'deskripsi' => ['required'],
-            'porsi' => ['required'],
-            'waktu'=> ['required']
+            'judul' => ['required', 'string', 'max:200'],
+            'deskripsi' => ['nullable', 'string'],
+            'porsi' => ['required', 'integer'],
+            'waktu' => ['required', 'integer'], 
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], 
+            'langkah' => ['required', 'string'],
+            'bahan' => ['required', 'string']
         ]);
+
+        $imagePath = $request->file('image')->store('images', 'public');
 
         $recipe = Recipe::create([
-            $incomingFields,
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(), 
+            'judul' => $incomingFields['judul'],
+            'deskripsi' => $incomingFields['deskripsi'],
+            'image_url' => $imagePath, 
+            'porsi' => $incomingFields['porsi'],
+            'waktu' => $incomingFields['waktu'], 
         ]);
 
-        return redirect('/');
+        $steps = Step::create([
+            'recipe_id' => $recipe->id,
+            'user_id' => auth()->id(),
+            'deskripsi_langkah' => $incomingFields['langkah']
+        ]);
+
+        $ingredients = Ingredient::create([
+            'recipe_id' => $recipe->id,
+            'user_id' => auth()->id(),
+            'nama_bahan' => $incomingFields['bahan']
+        ]);
+
+        return redirect('/')->with('success', 'Resep berhasil ditambahkan!');
     }
 
     public function showComments($id)
