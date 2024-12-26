@@ -7,7 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomepageController;
 
 
-Route::get('/', [HomepageController::class, 'homepage']);
+Route::get('/', [RecipeController::class, 'homepage']);
 
 # REGISTER #
 Route::get('/register', function () {

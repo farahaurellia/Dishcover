@@ -11,9 +11,51 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Services\RecipeRecommendationService;
 
 class RecipeController extends Controller
 {    
+    protected $recommendationService;
+
+    public function __construct(RecipeRecommendationService $recommendationService)
+    {
+        $this->recommendationService = $recommendationService;
+    }
+
+    public function homepage()
+    {
+        if (Auth::check()) {
+            // Get the currently authenticated user
+            $user = auth()->user();
+
+            // Get the most recent recipe from the user's history
+            $recentHistory = \DB::table('histories')
+                ->where('user_id', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->first(); // Gets the most recent record from the history table
+
+            // Check if the user has any history
+            if ($recentHistory) {
+                // Retrieve the most recent recipe based on history
+                $recipe = Recipe::findOrFail((int)$recentHistory->recipe_id);
+            } else {
+                // If no history exists, pick a random recipe
+                $recipe = Recipe::inRandomOrder()->first(); // Retrieve a random recipe
+            }
+
+            // Get recommendations based on the selected recipe (from history or random)
+            $recommendations = $this->recommendationService->recommendRecipesByTitle($recipe->id);
+        } else {
+            $recommendations = Recipe::inRandomOrder()->take(5)->get();
+
+        }
+
+        $recipes = Recipe::all();
+
+        return view('homepage', compact('recommendations', 'recipes'));
+    }
+
+
     public function upload(Request $request)
     {
         $incomingFields = $request->validate([

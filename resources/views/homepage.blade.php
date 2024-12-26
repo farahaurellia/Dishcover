@@ -28,6 +28,37 @@
                 <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
+            <div class="recommendations">
+                <h1> Rekomendasi </h1>
+                <div class="recipes">
+                    @foreach ($recommendations as $recommendation)
+                    <a href="{{ route('show', $recommendation->id) }}" class="recipe-card-link">
+                        <div class="recipe-card">
+                            <div class="image-wrapper">                        
+                                <img src="{{ asset($recommendation->image_url) }}" alt="Recipe Image">
+                            </div>                          
+                            <div class="recipe-info">
+                                <div class="tags">
+                                    <span class="porsi">
+                                        <img src="{{ asset('icons/porsi.svg') }}" alt="porsi">                    
+                                        {{ $recommendation->porsi }}
+                                    </span>
+                                    <span class="waktu">
+                                        <img src="{{ asset('icons/waktu.svg') }}" alt="waktu">                                                        
+                                        {{ $recommendation->waktu }} minutes
+                                    </span>
+                                </div>
+                                <h5>{{ $recommendation->judul}}</h5>
+                                <p>{{ $recommendation->deskripsi }}</p>
+                                <p>Recipe by {{ $recommendation->user->username }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="recipes">
                 @foreach ($recipes as $recipe)
                 <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
