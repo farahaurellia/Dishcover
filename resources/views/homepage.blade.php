@@ -63,7 +63,7 @@
                 @foreach ($recipes as $recipe)
                 <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
                     <div class="recipe-card">
-                        <div class="image-wrapper">                        
+                        <div class="img-wrapper">                        
                             <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
                         </div>                          
                         <div class="recipe-info">
