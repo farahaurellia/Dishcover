@@ -30,7 +30,9 @@
             </div>
 
             <div class="recommendations">
-                <h1> Rekomendasi </h1>
+                <div class="section-title">
+                    <p> Mungkin anda suka </p>
+                </div>
                 <div class="recipes">
                     @foreach ($recommendations as $recommendation)
                     <a href="{{ route('show', $recommendation->id) }}" class="recipe-card-link">
@@ -52,6 +54,38 @@
                                 <h5>{{ $recommendation->judul}}</h5>
                                 <p>{{ $recommendation->deskripsi }}</p>
                                 <p>Recipe by {{ $recommendation->user->username }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="latest">
+                <div class="section-title">
+                    <p> Terbaru </p>
+                </div>
+                <div class="recipes">
+                    @foreach ($latestRecipe as $latest)
+                    <a href="{{ route('show', $latest->id) }}" class="recipe-card-link">
+                        <div class="recipe-card">
+                            <div class="image-wrapper">                        
+                                <img src="{{ asset($latest->image_url) }}" alt="Recipe Image">
+                            </div>                          
+                            <div class="recipe-info">
+                                <div class="tags">
+                                    <span class="porsi">
+                                        <img src="{{ asset('icons/porsi.svg') }}" alt="porsi">                    
+                                        {{ $latest->porsi }}
+                                    </span>
+                                    <span class="waktu">
+                                        <img src="{{ asset('icons/waktu.svg') }}" alt="waktu">                                                        
+                                        {{ $latest->waktu }} minutes
+                                    </span>
+                                </div>
+                                <h5>{{ $latest->judul}}</h5>
+                                <p>{{ $latest->deskripsi }}</p>
+                                <p>Recipe by {{ $latest->user->username }}</p>
                             </div>
                         </div>
                     </a>

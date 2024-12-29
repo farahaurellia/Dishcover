@@ -41,7 +41,9 @@
     height: 100%;
     margin: 0 auto; 
     margin-bottom: 20px;
-    overflow-x: auto;
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
+    scrollbar-width: none;  /* For Firefox */
   }
   
   .recipe-card {
@@ -145,6 +147,16 @@
     display: flex;
     border: 2px solid #F6664E;
     color: #F6664E;
+  }
+
+  .section-title {
+    color: #F6664E;
+    font-size: 30px;
+    font-weight: 600;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
   }
   
   

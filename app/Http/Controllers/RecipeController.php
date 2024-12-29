@@ -51,9 +51,13 @@ class RecipeController extends Controller
 
         }
 
+        // Fetch the latest recipe by id (highest id)
+        $latestRecipe = Recipe::orderBy('id', 'desc')->take(5)->get();
+
+
         $recipes = Recipe::all();
 
-        return view('homepage', compact('recommendations', 'recipes'));
+        return view('homepage', compact('recommendations', 'recipes', 'latestRecipe'));
     }
 
 
@@ -146,6 +150,16 @@ class RecipeController extends Controller
         ]);
 
         // Redirect or respond as needed
+        return back()->with('success', 'Comment added successfully!');
+    }
+
+    public function addLike($id)
+    {
+        Like::create([
+            'user_id' => Auth::id(),
+            'recipe_id' => $id
+        ]);
+
         return back()->with('success', 'Comment added successfully!');
     }
 
