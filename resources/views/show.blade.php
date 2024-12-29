@@ -74,21 +74,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="comments align-items-center mb-3">
-        @foreach ($comments as $comment)
-            <div class="d-flex">
-                <div class="profile-image">
-                    <img 
-                        src="{{ $comment->profilepicture_url }}" 
-                        alt="{{ $comment->username }}'s profile picture" 
-                        class="rounded-circle" 
-                        style="width: 50px; height: 50px; object-fit: cover;">
-                </div>
-                <div class="ms-3 mt-2">
-                    <div class="username font-weight-bold">{{ $comment->username }}</div>
-                    <div class="user-comment">{{ $comment->isi_komentar }}</div>
-                </div>
+        @if ($comments->isEmpty())
+            <div class="d-flex justify-content-center align-items-center" style="height: 70px;">
+                <h5>No comments yet.</h5>
             </div>
-        @endforeach
+        @else
+            @foreach ($comments as $comment)
+                <div class="d-flex">
+                    <div class="profile-image">
+                        <img 
+                            src="{{ $comment->profilepicture_url }}" 
+                            alt="{{ $comment->username }}'s profile picture" 
+                            class="rounded-circle" 
+                            style="width: 50px; height: 50px; object-fit: cover;">
+                    </div>
+                    <div class="ms-3 mt-2">
+                        <div class="username font-weight-bold">{{ $comment->username }}</div>
+                        <div class="user-comment">{{ $comment->isi_komentar }}</div>
+                    </div>
+                </div>
+            @endforeach
+        @endif 
     @if (Auth::check())
         <div class="modal-body">
             <form action="{{ route('addComment', $recipe->id) }}" method="POST">
