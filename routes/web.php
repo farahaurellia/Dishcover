@@ -26,8 +26,7 @@ Route::get('/upload', function(){
 Route::post('/upload', [RecipeController::class, "upload"])->name('upload');
 
 # COMMENTS #
-Route::get('/recipes/{recipe_id}/comments', [RecipeController::class, 'showComments'])->name('recipes.comments');
-Route::post('/recipe/{recipe_id}/comment', [CommentController::class, 'addComment'])->name('comment.addComment');
+Route::post('/recipe/{id}/comment', [RecipeController::class, 'addComment'])->name('addComment');
 
 # LIKE #
 Route::get('/like', [UserController::class, 'like']);

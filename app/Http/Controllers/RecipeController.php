@@ -7,6 +7,7 @@ use App\Models\Recipe;
 use App\Models\Ingredient;
 use App\Models\Step;
 use App\Models\History;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -94,13 +95,6 @@ class RecipeController extends Controller
         return redirect('/')->with('success', 'Resep berhasil ditambahkan!');
     }
 
-    public function showComments($id)
-    {
-        $recipe = Recipe::findOrFail($id); 
-        $comments = $recipe->comments; 
-        return view('recipes.comments', compact('recipe', 'comments'));
-    }
-
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -114,11 +108,18 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id); 
 
-        $ingredient = Ingredient::findorFail($id);
+        $ingredient = Ingredient::findOrFail($id);
         $bahan = explode(';', $ingredient->nama_bahan);
 
-        $steps = Step::findorFail($id);
+        $steps = Step::findOrFail($id);
         $langkah = explode(';', $steps->deskripsi_langkah);
+
+        // Fetch comments associated with this recipe
+        $comments = \DB::table('comments')
+            ->join('users', 'comments.user_id', '=', 'users.id')
+            ->where('comments.recipe_id', $id)
+            ->select('comments.*', 'users.username', 'users.profilepicture_url')
+            ->get();
 
         if (Auth::check()) {
             History::create([
@@ -126,7 +127,27 @@ class RecipeController extends Controller
                 'recipe_id' => $id
             ]);
         }
-        return view('show', compact('recipe', 'bahan', 'langkah'));
+
+        return view('show', compact('recipe', 'bahan', 'langkah', 'comments'));
     }
+
+    public function addComment(Request $request, $id)
+    {
+        // Validate the comment input
+        $validated = $request->validate([
+            'isi_komentar' => 'required|string|max:500',  // You can adjust validation as needed
+        ]);
+
+        // Create the new comment
+        Comment::create([
+            'recipe_id' => $id,                          // Pass the recipe ID
+            'user_id' => Auth::id(),                      // Pass the authenticated user ID
+            'isi_komentar' => $validated['isi_komentar'], // Pass the comment text
+        ]);
+
+        // Redirect or respond as needed
+        return back()->with('success', 'Comment added successfully!');
+    }
+
 
 }
