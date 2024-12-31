@@ -46,7 +46,7 @@
 
                         <div class="profile-icon">
                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#userModal">
-                                <img src="{{ Auth::user()->profilepicture_url }}" alt="profile picture" style="width: 50px; height: auto;">
+                                <img src="{{ asset(Auth::user()->profilepicture_url) }}" alt="profile picture" style="width: 50px; height: auto;">
                             </button>
                         </div>
                     @else
@@ -70,7 +70,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-content-login">
                     <div class="modal-header modal-header-login">
-                        <h5 class="modal-title modal-title-login" id="loginModalLabel">Masuk untuk menyimpan resep dan artikel favoritmu!</h5>
+                        <h5 class="modal-title modal-title-login" id="loginModalLabel">Masuk untuk berbagi dan menyukai resep favoritmu!</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modal-body-login">
@@ -138,4 +138,5 @@
         <div class="content" style="padding-top : 90px">
             {{$slot}}
         </div>
+
     </body>
