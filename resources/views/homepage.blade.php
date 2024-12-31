@@ -10,7 +10,7 @@
                 </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
+                    <img src="{{ asset('images/carousel1.png') }}" alt="porsi">                
                 </div>
                 <div class="carousel-item">
                     <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
@@ -93,30 +93,40 @@
                 </div>
             </div>
 
-            <div class="recipes">
-                @foreach ($recipes as $recipe)
-                <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
-                    <div class="recipe-card">
-                        <div class="img-wrapper">                        
-                            <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
-                        </div>                          
-                        <div class="recipe-info">
-                            <div class="tags">
-                                <span class="porsi">
-                                    <img src="{{ asset('icons/porsi.svg') }}" alt="porsi">                    
-                                    {{ $recipe->porsi }}
-                                </span>
-                                <span class="waktu">
-                                    <img src="{{ asset('icons/waktu.svg') }}" alt="waktu">                                                        
-                                    {{ $recipe->waktu }} minutes
-                                </span>
+
+            <div class="reseplain">
+                <div class="section-title">
+                    <p> Resep lainnya </p>
+                </div>
+                <div class="recipes">
+                    @foreach ($recipes as $recipe)
+                    <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
+                        <div class="recipe-card">
+                            <div class="img-wrapper">                        
+                                <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
+                            </div>                          
+                            <div class="recipe-info">
+                                <div class="tags">
+                                    <span class="porsi">
+                                        <img src="{{ asset('icons/porsi.svg') }}" alt="porsi">                    
+                                        {{ $recipe->porsi }}
+                                    </span>
+                                    <span class="waktu">
+                                        <img src="{{ asset('icons/waktu.svg') }}" alt="waktu">                                                        
+                                        {{ $recipe->waktu }} minutes
+                                    </span>
+                                </div>
+                                <h5>{{ $recipe->judul}}</h5>
+                                <p>{{ $recipe->deskripsi }}</p>
+                                <p>Recipe by {{ $recipe->user->username }}</p>
                             </div>
-                            <h5>{{ $recipe->judul}}</h5>
-                            <p>{{ $recipe->deskripsi }}</p>
-                            <p>Recipe by {{ $recipe->user->username }}</p>
                         </div>
-                    </div>
-                </a>
-                @endforeach
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="footer">
+                <img src="{{ asset('images/footer.png') }}" alt="footer">                    
             </div>
 </x-layout>

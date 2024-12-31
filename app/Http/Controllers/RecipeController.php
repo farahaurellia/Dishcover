@@ -55,7 +55,7 @@ class RecipeController extends Controller
         $latestRecipe = Recipe::orderBy('id', 'desc')->take(5)->get();
 
 
-        $recipes = Recipe::all();
+        $recipes = Recipe::take(6)->get();
 
         return view('homepage', compact('recommendations', 'recipes', 'latestRecipe'));
     }
