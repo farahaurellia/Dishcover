@@ -9,7 +9,7 @@
     <div class="container-view">
         <div class="container-content">
         <div class="left-side">
-             <a onclick="window.history.back();" class="back-btn">
+             <a onclick="window.location.href='{{ url('/') }}';" class="back-btn">
                  <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57167 20.0001L17.3567 31.7851L15 34.1417L2.03667 21.1784C1.72422 20.8659 1.54869 20.442 1.54869 20.0001C1.54869 19.5581 1.72422 19.1343 2.03667 18.8217L15 5.8584L17.3567 8.21506L5.57167 20.0001Z" />
                  </svg>
@@ -20,25 +20,57 @@
                     </div>
                     <div class="recipe-info">
                         <div class="tags">
-                            <span class="porsi">
-                                <img src="{{ asset('icons/porsi-w.svg') }}" alt="porsi">                            
-                                {{ $recipe->porsi }}
-                            </span>
-                            <span class="waktu">
-                                <img src="{{ asset('icons/waktu-w.svg') }}" alt="porsi">                                                       
-                                {{ $recipe->waktu }} minutes
-                            </span>
-                            <button type="button" class="btn btn-comment" data-bs-toggle="modal" data-bs-target="#commentModal">
-                                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 7.001V13.001M7 10.001H13M10 19C11.78 19 13.5201 18.4722 15.0001 17.4832C16.4802 16.4943 17.6337 15.0887 18.3149 13.4442C18.9961 11.7996 19.1743 9.99002 18.8271 8.24419C18.4798 6.49836 17.6226 4.89472 16.364 3.63604C15.1053 2.37737 13.5016 1.5202 11.7558 1.17294C10.01 0.82567 8.20038 1.0039 6.55585 1.68509C4.91131 2.36628 3.50571 3.51983 2.51677 4.99987C1.52784 6.47991 1 8.21997 1 10C1 11.488 1.36 12.89 2 14.127L1 19L5.873 18C7.109 18.639 8.513 19 10 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                            @csrf
-                            <button class="like-button" id="likeButton">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.5 4C4.4625 4 2 6.4625 2 9.5C2 15 8.5 20 12 21.163C15.5 20 22 15 22 9.5C22 6.4625 19.5375 4 16.5 4C14.64 4 12.995 4.9235 12 6.337C11.4928 5.61469 10.819 5.0252 10.0357 4.61841C9.25238 4.21162 8.38263 3.9995 7.5 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
+                            <div class="tags-left">
+                                <span class="porsi">
+                                    <img src="{{ asset('icons/porsi-w.svg') }}" alt="porsi">                            
+                                    {{ $recipe->porsi }}
+                                </span>
+                                <span class="waktu">
+                                    <img src="{{ asset('icons/waktu-w.svg') }}" alt="porsi">                                                       
+                                    {{ $recipe->waktu }} minutes
+                                </span>
+                            </div>
+                            <div class="tags-right">
+                                @if (Auth::check())
+                                    @if($myrecipe)
+                                        <button class="edit-button" id="editButton">
+                                            <a href="{{ route('editPage', $recipe->id)}}" >
+                                                <img src="{{ asset('icons/edit.svg') }}" alt="edit" style="width: 33px; height: 33px">                                                       
+                                            </a>
+                                        </button>
+                                    @endif
+                                @endif
+                                <button type="button" class="btn btn-comment" data-bs-toggle="modal" data-bs-target="#commentModal">
+                                    <img src="{{ asset('icons/comment.svg') }}" alt="comment" style="width: 30px; height: 30px; margin-top: 2px">                                                       
+                                </button>
+                                @csrf
+                                @if (Auth::check())
+                                <div class="like-button">
+                                    @if ($likeExists)
+                                        <form action="{{ route('unlike') }}" method="POST" style="display: inline">
+                                            @csrf
+                                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                                            <button type="submit" class="like-button">
+                                                <img src="{{ asset('icons/liked.svg') }}" alt="Unlike" style="width: 30px; height: 30px;">
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('like') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                                            <button type="submit" class="like-button">
+                                                <img src="{{ asset('icons/notliked.svg') }}" alt="Like" style="width: 30px; height: 30px;">
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>                           
+                                @endif
+                                <button class="download-button" id="downloadButton">
+                                    <a href="{{ route('recipes.download', $recipe->id) }}" >
+                                        <img src="{{ asset('icons/download.svg') }}" alt="download" style="width: 33px; height: 33px">                                                       
+                                    </a>
+                                </button>
+                            </div>
                         </div>
                         <p>{{ $recipe->deskripsi }}</p>
                     </div>
@@ -48,7 +80,7 @@
                 <div class= "container-show">
                     <div class="judul">
                         <h4>{{ $recipe->judul}}</h4>
-                        <h6>Recipe by <span style="color: pink"> {{ $recipe->user->username }} </span></h6>
+                        <h6>Recipe by <span style="color: #E35778"> {{ $recipe->user->username }} </span></h6>
                     </div>
                 <p> Bahan-bahan: </p>
                 <ul>

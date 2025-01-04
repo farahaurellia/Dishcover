@@ -9,13 +9,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container-regist">
+    <div class="container-recipe">
         <div class="left-section">
             <a href="/" class="close-button">
                 <img src="{{ asset('icons/back.svg') }}" alt="back">                         
             </a>          
             <div class="container-title">
-                <p>Unggah Resepmu!</p>
+                <img src="{{ asset('images/unggahresep.png') }}" alt="back">
             </div>
         </div>
         <div class="right-section">

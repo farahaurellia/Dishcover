@@ -10,13 +10,13 @@
                 </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('images/carousel1.png') }}" alt="porsi">                
+                    <img src="{{ asset('images/carousel1.png') }}" alt="carousel">                
                 </div>
                 <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
+                    <img src="{{ asset('images/carousel2.png') }}" alt="carousel">                
                 </div>
                 <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/69/23/30/6923305f212ed3ebbd52bd5694c0c728.jpg" class="d-block" alt="...">
+                    <img src="{{ asset('images/carousel3.png') }}" class="d-block" alt="...">
                 </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -53,7 +53,7 @@
                                 </div>
                                 <h5>{{ $recommendation->judul}}</h5>
                                 <p>{{ $recommendation->deskripsi }}</p>
-                                <p>Recipe by {{ $recommendation->user->username }}</p>
+                                <p>Recipe by <span style="color: #E35778"> {{ $recommendation->user->username }} </span></p>
                             </div>
                         </div>
                     </a>
@@ -85,7 +85,7 @@
                                 </div>
                                 <h5>{{ $latest->judul}}</h5>
                                 <p>{{ $latest->deskripsi }}</p>
-                                <p>Recipe by {{ $latest->user->username }}</p>
+                                <p>Recipe by <span style="color: #E35778"> {{ $latest->user->username }} </span></p>
                             </div>
                         </div>
                     </a>
@@ -102,7 +102,7 @@
                     @foreach ($recipes as $recipe)
                     <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
                         <div class="recipe-card">
-                            <div class="img-wrapper">                        
+                            <div class="image-wrapper">                        
                                 <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
                             </div>                          
                             <div class="recipe-info">
@@ -118,7 +118,7 @@
                                 </div>
                                 <h5>{{ $recipe->judul}}</h5>
                                 <p>{{ $recipe->deskripsi }}</p>
-                                <p>Recipe by {{ $recipe->user->username }}</p>
+                                <p>Recipe by <span style="color: #E35778"> {{ $recipe->user->username }} </span></p>
                             </div>
                         </div>
                     </a>
@@ -127,6 +127,7 @@
             </div>
 
             <div class="footer">
-                <img src="{{ asset('images/footer.png') }}" alt="footer">                    
+                <img src="{{ asset('images/footer.png') }}" alt="footer"> 
+                <p>©2024 DishCover</p>                   
             </div>
 </x-layout>

@@ -16,7 +16,9 @@
             <div class="navbar-content">
                 <!-- Logo Section -->
                 <div class="navbar-logo">
-                    <a href="/">Logo</a>
+                    <a href="/">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">   
+                    </a>
                 </div>
                 
                 <!-- Navigation Menu -->
@@ -88,7 +90,11 @@
                                 <label for="floatinginput" class="form" style="color: #75A47F">Password</label>
                             </div>
 
-                            <p class="text" style="font-weight: bold">
+                            @if ($errors->has('loginerror'))
+                                <p class="m-0 small alert alert-danger shadow-sm">{{ $errors->first('loginerror') }}</p>
+                            @endif
+
+                            <p class="text" style="font-weight: bold; margin-top: 10px">
                                 Tidak punya akun? 
                                 <a href="{{ route('register') }}" style="color: #E6A4B4">Daftar</a>
                             </p>
@@ -99,7 +105,14 @@
                             </div>
                         </form>
                     </div>
-                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            @if(session('showLoginModal'))
+                                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                                loginModal.show();
+                            @endif
+                        });
+                    </script>
                 </div>
             </div>
         </div>      
@@ -121,6 +134,14 @@
                         <span class="text">Halo, </span> 
                         {{ Auth::user()->username }}!
                       </h5>
+
+                      <!-- My Recipe -->
+                      <div class="btn-resep">
+                      <a href="/myrecipe" style="text-decoration: none; color: black">
+                        <img src="{{ asset('icons/myrecipe.svg') }}" alt="recipe">   
+                        Resep anda                     
+                      </a>
+                      </div>
               
                       <!-- Logout Button -->
                       <div class="btn-logout">

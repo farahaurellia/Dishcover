@@ -32,7 +32,7 @@
                             </div>
                             <h5>{{ $recipe->judul}}</h5>
                             <p>{{ $recipe->deskripsi }}</p>
-                            <p>Recipe by {{ $recipe->user->username }}</p>
+                            <p>Recipe by <span style="color: #E35778"> {{ $recipe->user->username }} </span></p>
                         </div>
                     </div>
             @empty 
