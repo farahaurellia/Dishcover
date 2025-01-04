@@ -30,6 +30,8 @@ Route::post('/recipe/{id}/comment', [RecipeController::class, 'addComment'])->na
 
 # LIKE #
 Route::get('/like', [UserController::class, 'like']);
+Route::post('/like', [RecipeController::class, 'like'])->name('like');
+Route::post('/unlike', [RecipeController::class, 'unlike'])->name('unlike');
 
 # HISTORY #
 Route::get('/history', [UserController::class, 'history']);
@@ -39,3 +41,16 @@ Route::get('/search', [RecipeController::class, 'search']);
 
 # VIEW # 
 Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('show');
+
+# DOWNLOAD #
+Route::get('/recipes/download/{id}', [RecipeController::class, 'download'])->name('recipes.download');
+
+# MY RECIPE #
+Route::get('/myrecipe', [UserController::class, 'myrecipe'])->name('myrecipe');
+
+# EDIT #
+Route::get('/edit/{id}', [RecipeController::class, 'editPage'])->name('editPage');
+Route::post('/edit/{id}', [RecipeController::class, 'edit']);
+
+# DELETE #
+Route::delete('/edit/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');

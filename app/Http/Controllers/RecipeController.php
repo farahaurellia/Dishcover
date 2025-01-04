@@ -8,11 +8,13 @@ use App\Models\Ingredient;
 use App\Models\Step;
 use App\Models\History;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Services\RecipeRecommendationService;
+use PDF;
 
 class RecipeController extends Controller
 {    
@@ -26,32 +28,25 @@ class RecipeController extends Controller
     public function homepage()
     {
         if (Auth::check()) {
-            // Get the currently authenticated user
             $user = auth()->user();
 
-            // Get the most recent recipe from the user's history
             $recentHistory = \DB::table('histories')
                 ->where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')
-                ->first(); // Gets the most recent record from the history table
+                ->first(); 
 
-            // Check if the user has any history
             if ($recentHistory) {
-                // Retrieve the most recent recipe based on history
                 $recipe = Recipe::findOrFail((int)$recentHistory->recipe_id);
             } else {
-                // If no history exists, pick a random recipe
                 $recipe = Recipe::inRandomOrder()->first(); // Retrieve a random recipe
             }
 
-            // Get recommendations based on the selected recipe (from history or random)
             $recommendations = $this->recommendationService->recommendRecipesByTitle($recipe->id);
         } else {
             $recommendations = Recipe::inRandomOrder()->take(5)->get();
 
         }
 
-        // Fetch the latest recipe by id (highest id)
         $latestRecipe = Recipe::orderBy('id', 'desc')->take(5)->get();
 
 
@@ -124,44 +119,136 @@ class RecipeController extends Controller
             ->where('comments.recipe_id', $id)
             ->select('comments.*', 'users.username', 'users.profilepicture_url')
             ->get();
-
         if (Auth::check()) {
-            History::create([
-                'user_id' => Auth::id(),
-                'recipe_id' => $id
-            ]);
+            $exists = History::where('user_id', Auth::id())
+                    ->where('recipe_id', $id)
+                    ->exists();
+
+            if (!$exists) {
+                History::create([
+                    'user_id' => Auth::id(),
+                    'recipe_id' => $id,
+                ]);
+            }
         }
 
-        return view('show', compact('recipe', 'bahan', 'langkah', 'comments'));
+        $likeExists = Like::where('user_id', Auth::id())
+                  ->where('recipe_id', $id)
+                  ->exists();
+
+        $myrecipe = Recipe::where('user_id', Auth::id())
+                    ->where('id', $id)
+                    ->exists();
+
+        return view('show', compact('recipe', 'bahan', 'langkah', 'comments', 'likeExists', 'myrecipe'));
     }
 
     public function addComment(Request $request, $id)
     {
-        // Validate the comment input
         $validated = $request->validate([
-            'isi_komentar' => 'required|string|max:500',  // You can adjust validation as needed
+            'isi_komentar' => 'required|string|max:500',  
         ]);
 
-        // Create the new comment
         Comment::create([
-            'recipe_id' => $id,                          // Pass the recipe ID
-            'user_id' => Auth::id(),                      // Pass the authenticated user ID
-            'isi_komentar' => $validated['isi_komentar'], // Pass the comment text
+            'recipe_id' => $id,                          
+            'user_id' => Auth::id(),                      
+            'isi_komentar' => $validated['isi_komentar'], 
         ]);
 
-        // Redirect or respond as needed
         return back()->with('success', 'Comment added successfully!');
     }
 
-    public function addLike($id)
+    public function like(Request $request)
     {
-        Like::create([
-            'user_id' => Auth::id(),
-            'recipe_id' => $id
+        $userId = auth()->id();
+        $recipeId = $request->input('recipe_id');
+
+        Like::firstOrCreate([
+            'user_id' => $userId,
+            'recipe_id' => $recipeId,
         ]);
 
-        return back()->with('success', 'Comment added successfully!');
+        return back()->with('success', 'Recipe liked successfully!');
     }
 
+    public function unlike(Request $request)
+    {
+        $userId = auth()->id();
+        $recipeId = $request->input('recipe_id');
+
+        Like::where('user_id', $userId)
+            ->where('recipe_id', $recipeId)
+            ->delete();
+
+        return back()->with('success', 'Recipe unliked successfully!');
+    }
+
+    public function download($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+
+        $ingredient = Ingredient::findOrFail($id);
+        $bahan = explode(';', $ingredient->nama_bahan);
+
+        $steps = Step::findOrFail($id);
+        $langkah = explode(';', $steps->deskripsi_langkah);
+
+        $pdf = PDF::loadView('pdf', compact('recipe', 'bahan', 'langkah'));
+
+        return $pdf->download($recipe->judul . '.pdf');
+    }
+
+    public function editPage($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+
+        $ingredient = Ingredient::findOrFail($id);
+
+        $steps = Step::findOrFail($id);
+
+        return view('edit', compact('recipe', 'ingredient', 'steps'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $incomingFields = $request->validate([
+            'judul' => ['string', 'max:200'],
+            'deskripsi' => ['nullable', 'string'],
+            'porsi' => ['integer'],
+            'waktu' => ['integer'], 
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], 
+            'langkah' => ['string'],
+            'bahan' => ['string']
+        ]);
+
+        $recipe = Recipe::findOrFail($id);
+        $recipe->update([
+            'judul' => $incomingFields['judul'],
+            'deskripsi' => $incomingFields['deskripsi'],
+            'porsi' => $incomingFields['porsi'],
+            'waktu' => $incomingFields['waktu'],
+        ]);
+
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->update([
+            'nama_bahan' => $incomingFields['bahan']
+        ]);
+
+        $steps = Step::findOrFail($id);
+        $steps->update([
+            'deskripsi_langkah' => $incomingFields['langkah']
+        ]);
+
+        return redirect()->route('show', $recipe->id)->with('success', 'Recipe updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+
+        return redirect('/')->with('success', 'Recipe deleted successfully!');
+    }
 
 }
+
