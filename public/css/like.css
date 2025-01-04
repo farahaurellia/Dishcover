@@ -1,23 +1,55 @@
 body {
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #ffffff;
     height: 100%;
+    min-height: 100vh;
   }
   
   .container {
     display: flex;
-    justify-content: center; /* Posisikan di tengah secara horizontal */
-    align-items: center;    /* Posisikan di tengah secara vertikal */
-    height: 80vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
-    width: 100%;            /* Lebar penuh */
-    background-color: #ffffff; /* Pastikan background putih */
+    justify-content: center; 
+    align-items: center;   
+    height: 80vh;       
+    width: 100%;             
+    background-color: #ffffff;  
     text-align: center;
-    top: 50%; /* Posisikan elemen 50% dari atas layar */
-    left: 50%; /* Posisikan elemen 50% dari kiri layar */
+    top: 50%;  
+    left: 50%;  
 }
+  .containerLike {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    height: 80vh;       
+    width: 100%;             
+    background-color: #ffffff;  
+    text-align: center;
+    top: 50%;  
+    left: 50%;  
+    margin: 30px 0;
+    padding-bottom: 40px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .btnlike {
+    background-color: #3c763d;
+    color: #fff;
+    padding: 9px 15px; 
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    margin: 50px 0;
+  }
 
   
   .header {
-    background-color: #287428; /* Dark green for the header */
+    background-color: #287428; 
     color: #fff;
     padding: 15px;
     display: flex;
@@ -25,9 +57,6 @@ body {
     align-items: center;
   }
   
-  .logo {
-    /* Style your logo appropriately */
-  }
   
   .nav-item {
     margin-left: 20px;
@@ -37,7 +66,6 @@ body {
     background-color: #fff;
     padding: 20px;
     text-align: center;
-    min-height: 100vh;
   }
   
   .empty-message {
@@ -46,70 +74,35 @@ body {
   }
   
   .empty-message .cta {
-    color: #287428; /* Green for the call to action */
+    color: #287428; 
     text-decoration: none;
   }
 
   .title {
     display: flex;
-    justify-content: center; /* Menempatkan konten di tengah secara horizontal */
-    align-items: center; /* Menempatkan konten di tengah secara vertikal */
+    justify-content: center; 
+    align-items: center; 
     margin: 10px 0;
-    width: 100%; /* Pastikan elemen mengambil lebar penuh */
+    width: 100%; 
     gap: 10px;
     padding: 30px;
 }
 
-.containerLike {
-    display: flex;
-    justify-content: center; /* Posisikan di tengah secara horizontal */
-    align-items: center;    /* Posisikan di tengah secara vertikal */
-    height: 80vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
-    width: 100%;            /* Lebar penuh */
-    background-color: #ffffff; /* Pastikan background putih */
-    text-align: center;
-    top: 50%; /* Posisikan elemen 50% dari atas layar */
-    left: 50%; /* Posisikan elemen 50% dari kiri layar */
-    margin: 30px 0;
-    padding-bottom: 40px;
-    gap: 10px;
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
-.heart-icon {
-    float: center;
-  }
 
 .title-text {
-    font-size: 25px; /* Ukuran font untuk elemen h1 */
+    font-size: 25px; 
     font-weight: bold;
-    shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan */
+    shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
 }
 
 .titleLike{
     display: flex;
-    justify-content: center; /* Menempatkan konten di tengah secara horizontal */
-    align-items: center; /* Menempatkan konten di tengah secara vertikal */
+    justify-content: center; 
+    align-items: center; 
     margin: 10px 0;
-    width: 100%; /* Pastikan elemen mengambil lebar penuh */
+    width: 100%; 
     gap: 10px;
     padding: 15px;
-}
-
-.btnlike {
-    background-color: #3c763d;
-    color: #fff;
-    padding: 9px 15px; /* Atur jarak di dalam tombol */
-    border: none;
-    border-radius: 28px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan */
-    text-align: center; /* Pastikan teks di tengah */
-    margin: 50px 0;
 }
 
 /* Recipes Container */
@@ -138,7 +131,6 @@ body {
   height: 170px;             
   object-fit: cover;       
   object-position: center;   
-  border-bottom: 1px solid #ddd;
   border-radius: 15px;
 }
 
@@ -162,23 +154,6 @@ transition: transform 0.3s ease;
 transform: scale(1.1);
 }
 
-.like-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgb(255, 255, 255); /* Slightly transparent */
-  border: none;
-  border-radius: 50%;
-  padding: 6px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-  color: red;
-}
-
-.like-button:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
 
 .recipe-info {
   margin: 0px;
@@ -193,6 +168,7 @@ transform: scale(1.1);
 .recipe-info p {
   margin: 0;
   font-size: 13px;
+  font-weight: 500;
 }
 
 .tags {
@@ -202,26 +178,32 @@ transform: scale(1.1);
   font-size: 13px;
 }
 
-.tags svg {
-  margin-right: 5px;
+.tags img{
+  width: 20px;
+  height: 20px;
+  margin: 0 3px 0 3px;
+  fill: #F6664E !important;
 }
 
-.porsi {
-  background-color: #E6A4B4;  
+.porsi { 
   padding: 3px 7px 3px 3px;        
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;        
   display: flex;
+  border: 2px solid #F6664E;
+  color: #F6664E;
 }
 
-.waktu {
-  background-color: #BACD92;  
+.waktu { 
   padding: 3px 6px 3px 3px;          
   border-radius: 15px;
   text-align: center;        
   display: flex;
+  border: 2px solid #F6664E;
+  color: #F6664E;
 }
+
 
 
 

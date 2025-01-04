@@ -120,6 +120,7 @@
     display: flex;
     border: 2px solid white;
     color: white;
+    margin-right: 10px;
   }
 
   .right-side p{
@@ -201,12 +202,11 @@
   font-size: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: color 0.3s ease, transform 0.3s ease;
-  transform: translateX(-10px); /* Geser ke kiri sebanyak 10px */
 } 
 
 .like-button svg {
-  margin-right: 8px;
   transition: fill 0.3s ease;
 }
 
@@ -221,4 +221,30 @@
 .comments {
   flex-direction: row;
 }
-    
+
+.download-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}  
+
+.tags-right {
+  margin-left: auto;
+  display: flex;
+}
+
+.tags-left {
+  display: flex;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}  

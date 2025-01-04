@@ -35,11 +35,16 @@
     width: 60px; /* Ukuran lingkaran */
     height: 60px; /* Ukuran lingkaran */
     border-radius: 50%; /* Membuatnya menjadi lingkaran */
-    background-color: #fff; /* Warna latar belakang lingkaran */
+    background-color: inherit; /* Warna latar belakang lingkaran */
     display: flex;
     justify-content: center;
     align-items: center; /* Menempatkan logo di tengah lingkaran */
     margin-right: 10px;
+  }
+
+  .navbar-logo img{
+    width: 80px;
+    height: 80px;
   }
   
   /* Menu */

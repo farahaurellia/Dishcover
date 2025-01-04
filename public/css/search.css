@@ -23,7 +23,7 @@
  }
 
  .title-text span{
-    color: #E6A4B4;
+    color: #E35778;
  }
 
  .back-btn{
@@ -111,6 +111,7 @@
   .recipe-info p {
     margin: 0;
     font-size: 13px;
+    font-weight: 500;
   }
   
   .tags {
