@@ -15,9 +15,19 @@ class UserController extends Controller
 {
     public function register(Request $request) {
         $profilePictures = [
-            'https://i.pinimg.com/736x/de/eb/69/deeb69b5d7f16d97591705063ca9b92a.jpg',
-            'https://i.pinimg.com/236x/70/4d/1c/704d1c3f123cd304beb8fd12561d3ac2.jpg',
-            'https://i.pinimg.com/236x/68/cf/ff/68cfff25d08b07229eee05857a98e261.jpg'
+            asset('images/profile1.jpg'),
+            asset('images/profile1.jpg'),
+            asset('images/profile2.jpg'),
+            asset('images/profile3.jpg'),
+            asset('images/profile4.jpg'),
+            asset('images/profile5.jpg'),
+            asset('images/profile6.jpg'),
+            asset('images/profile7.jpg'),
+            asset('images/profile8.jpg'),
+            asset('images/profile9.jpg'),
+            asset('images/profile10.jpg'),
+            asset('images/profile11.jpg'),
+            asset('images/profile12.jpg')
         ];
     
         $randomProfilePicture = $profilePictures[array_rand($profilePictures)];
@@ -40,19 +50,21 @@ class UserController extends Controller
     }
     
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $incomingFields = $request->validate([
             'loginusername' => 'required',
             'loginpassword' => 'required'
         ]);
 
-        if(auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])){
+        if (auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
             return redirect('/')->with('success', 'You have logged in');
         } else {
-            return redirect('/')->with('failure', 'Invalid login');
+            return back()->withErrors(['loginerror' => 'Invalid username or password.'])->with('showLoginModal', true);
         }
     }
+
 
     public function logout(){
         auth()->logout();
@@ -79,18 +91,12 @@ class UserController extends Controller
         return view('history', compact('recipes'));
     }
 
-    public function addLike(){
-        if (Auth::check()) {
-            Like::create([
-                'user_id' => Auth::id(),
-                'recipe_id' => $id
-            ]);
-        }
+    public function myrecipe(){
+        $id = Auth::id();
 
-        return back();
-    }
-    
-    public function unLike(){
-        
+        $recipes = Recipe::where('user_id', $id)->get();
+
+        return view('myrecipe', compact('recipes'));
+
     }
 }
