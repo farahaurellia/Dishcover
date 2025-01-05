@@ -33,7 +33,7 @@ class UserController extends Controller
         $randomProfilePicture = $profilePictures[array_rand($profilePictures)];
     
         $incomingFields = $request->validate([
-            'username' => ['required', 'min:3', 'max:20'],
+            'username' => ['required', 'min:3', 'max:20', 'unique:users,username'],
             'email' => ['required', 'email', 'unique:users,email'], 
             'password' => ['required', 'min:8']
         ]);

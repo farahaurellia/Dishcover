@@ -139,7 +139,7 @@
                       <div class="btn-resep">
                       <a href="/myrecipe" style="text-decoration: none; color: black">
                         <img src="{{ asset('icons/myrecipe.svg') }}" alt="recipe">   
-                        Resep anda                     
+                        Resep saya                     
                       </a>
                       </div>
               

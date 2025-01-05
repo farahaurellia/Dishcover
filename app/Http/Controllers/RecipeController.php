@@ -113,24 +113,27 @@ class RecipeController extends Controller
         $steps = Step::findOrFail($id);
         $langkah = explode(';', $steps->deskripsi_langkah);
 
-        // Fetch comments associated with this recipe
         $comments = \DB::table('comments')
             ->join('users', 'comments.user_id', '=', 'users.id')
             ->where('comments.recipe_id', $id)
             ->select('comments.*', 'users.username', 'users.profilepicture_url')
             ->get();
-        if (Auth::check()) {
-            $exists = History::where('user_id', Auth::id())
-                    ->where('recipe_id', $id)
-                    ->exists();
 
+        if (Auth::check()) {
+            \Log::debug('Authenticated user ID: ' . Auth::id());  // Log the user ID
+            $exists = History::where('user_id', Auth::id())
+                        ->where('recipe_id', $id)
+                     ->exists();
+            
             if (!$exists) {
+                \Log::debug('History entry created for user: ' . Auth::id());  // Log when history is created
                 History::create([
                     'user_id' => Auth::id(),
                     'recipe_id' => $id,
                 ]);
             }
         }
+            
 
         $likeExists = Like::where('user_id', Auth::id())
                   ->where('recipe_id', $id)
@@ -187,10 +190,10 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
 
-        $ingredient = Ingredient::findOrFail($id);
+        $ingredient = Ingredient::where('recipe_id', $id)->first();
         $bahan = explode(';', $ingredient->nama_bahan);
 
-        $steps = Step::findOrFail($id);
+        $steps = Step::where('recipe_id', $id)->first();
         $langkah = explode(';', $steps->deskripsi_langkah);
 
         $pdf = PDF::loadView('pdf', compact('recipe', 'bahan', 'langkah'));
@@ -215,18 +218,31 @@ class RecipeController extends Controller
             'judul' => ['string', 'max:200'],
             'deskripsi' => ['nullable', 'string'],
             'porsi' => ['integer'],
-            'waktu' => ['integer'], 
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], 
+            'waktu' => ['integer'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'langkah' => ['string'],
             'bahan' => ['string']
         ]);
 
         $recipe = Recipe::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public'); // Store the image in the 'public/images' directory
+            $incomingFields['image'] = $imagePath;
+
+            if ($recipe->image_url) {
+                Storage::delete('public/' . $recipe->image_url);
+            }
+
+            $recipe->image_url = $imagePath; 
+        }
+
         $recipe->update([
             'judul' => $incomingFields['judul'],
             'deskripsi' => $incomingFields['deskripsi'],
             'porsi' => $incomingFields['porsi'],
             'waktu' => $incomingFields['waktu'],
+            'image_url' => $recipe->image_url
         ]);
 
         $ingredient = Ingredient::findOrFail($id);
@@ -242,10 +258,17 @@ class RecipeController extends Controller
         return redirect()->route('show', $recipe->id)->with('success', 'Recipe updated successfully!');
     }
 
+
     public function destroy($id)
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
+
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->delete();
+
+        $step = Step::findOrFail($id);
+        $step->delete();
 
         return redirect('/')->with('success', 'Recipe deleted successfully!');
     }

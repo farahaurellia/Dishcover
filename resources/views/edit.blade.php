@@ -86,7 +86,8 @@
                     <div class="submit-btn">
                         <form action="{{ route('editPage', $recipe->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="submit-button">Edit</button>
+                            <button type="submit" class="submit-button">Save
+                            </button>
                         </form>
                     </div>
                 
