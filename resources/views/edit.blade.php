@@ -84,18 +84,17 @@
                 <div class="edit-buttons">
                     <!-- Edit Button -->
                     <div class="submit-btn">
-                        <form action="{{ route('editPage', $recipe->id) }}" method="POST">
+                        <form action="{{ route('recipes.update', $recipe->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="submit-button">Save
-                            </button>
-                        </form>
+                            @method('PUT') <!-- Specifies a PUT request -->
+                            <button type="submit" class="submit-button">Save</button>
+                        </form>                        
                     </div>
                 
                     <!-- Delete Button -->
                     <div class="submit-btn">
                         <form action="{{ route('recipes.destroy', $recipe->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
                             @csrf
-                            @method('DELETE') 
                             <button type="submit" class="delete-button btn btn-danger">Delete</button>
                         </form>
                     </div>

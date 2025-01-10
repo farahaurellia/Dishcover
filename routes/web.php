@@ -50,7 +50,7 @@ Route::get('/myrecipe', [UserController::class, 'myrecipe'])->name('myrecipe');
 
 # EDIT #
 Route::get('/edit/{id}', [RecipeController::class, 'editPage'])->name('editPage');
-Route::post('/edit/{id}', [RecipeController::class, 'edit']);
+Route::put('/edit/{id}', [RecipeController::class, 'edit'])->name('recipes.update');
 
 # DELETE #
-Route::delete('/edit/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
+Route::post('/edit/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');

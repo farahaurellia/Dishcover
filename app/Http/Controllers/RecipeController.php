@@ -260,17 +260,18 @@ class RecipeController extends Controller
 
 
     public function destroy($id)
-    {
-        $recipe = Recipe::findOrFail($id);
-        $recipe->delete();
-
-        $ingredient = Ingredient::findOrFail($id);
-        $ingredient->delete();
-
-        $step = Step::findOrFail($id);
-        $step->delete();
-
-        return redirect('/')->with('success', 'Recipe deleted successfully!');
+    {    
+            $recipe = Recipe::findOrFail($id);
+            $recipe->delete();
+    
+            // Ensure these records exist before deleting
+            $ingredient = Ingredient::where('recipe_id', $id);
+            $ingredient->delete();
+    
+            $step = Step::where('recipe_id', $id);
+            $step->delete();
+        
+            return redirect('/')->with('success', 'Recipe deleted successfully!');
     }
 
 }
