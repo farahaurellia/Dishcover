@@ -32,15 +32,15 @@ class ApiRecipeController extends Controller
             : Recipe::inRandomOrder()->first();
 
         $recommendations = $recipe
-            ? $this->recommendationService->recommendRecipesByTitle($recipe->id)
+            ? $this->recommendationService->recommendRecipesByTitle($recipe->id)->load('user')
             : collect();
     } else {
         // Guest users see random recommendations
-        $recommendations = Recipe::inRandomOrder()->take(5)->get();
+        $recommendations = Recipe::with('user')->inRandomOrder()->take(5)->get();
     }
 
-    $latestRecipe = Recipe::orderBy('id', 'desc')->take(5)->get();
-    $recipes = Recipe::take(6)->get();
+    $latestRecipe = Recipe::with('user')->orderBy('id', 'desc')->take(5)->get();
+    $recipes = Recipe::with('user')->take(6)->get();
 
     return response()->json([
         'success' => true,
