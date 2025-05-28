@@ -15,19 +15,18 @@ class UserController extends Controller
 {
     public function register(Request $request) {
         $profilePictures = [
-            asset('images/profile1.jpg'),
-            asset('images/profile1.jpg'),
-            asset('images/profile2.jpg'),
-            asset('images/profile3.jpg'),
-            asset('images/profile4.jpg'),
-            asset('images/profile5.jpg'),
-            asset('images/profile6.jpg'),
-            asset('images/profile7.jpg'),
-            asset('images/profile8.jpg'),
-            asset('images/profile9.jpg'),
-            asset('images/profile10.jpg'),
-            asset('images/profile11.jpg'),
-            asset('images/profile12.jpg')
+            '/images/profile1.jpg',
+            '/images/profile2.jpg',
+            '/images/profile3.jpg',
+            '/images/profile4.jpg',
+            '/images/profile5.jpg',
+            '/images/profile6.jpg',
+            '/images/profile7.jpg',
+            '/images/profile8.jpg',
+            '/images/profile9.jpg',
+            '/images/profile10.jpg',
+            '/images/profile11.jpg',
+            '/images/profile12.jpg'
         ];
     
         $randomProfilePicture = $profilePictures[array_rand($profilePictures)];
