@@ -11,6 +11,10 @@ use App\Models\History;
 use App\Models\Ingredient;
 use App\Models\Step;
 use App\Services\RecipeRecommendationService;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApiRecipeController extends Controller
 {
@@ -281,7 +285,16 @@ class ApiRecipeController extends Controller
             'bahan' => ['required', 'string']
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        $image = $request->file('image');
+        $filename = Str::uuid() . '.jpeg'; // Always convert to jpeg
+        $imagePath = 'images/' . $filename;
+
+        $manager = new ImageManager(new Driver());
+
+        $compressed = $manager->read($image)->scaleDown(1280, null)->toJpeg(75);
+
+        // $imagePath = $request->file('image')->store('images', 'public');
+        Storage::disk('public')->put($imagePath, $compressed);
 
         $recipe = Recipe::create([
             'user_id' => $userId, 
