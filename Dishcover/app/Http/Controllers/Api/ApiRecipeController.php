@@ -94,14 +94,28 @@ class ApiRecipeController extends Controller
 
     public function likesApi()
     {
-        $id = Auth::id();
-
-        $recipeIds = Like::where('user_id', $id)->pluck('recipe_id');
-
-        $recipes = Recipe::whereIn('id', $recipeIds)->with('user')->get();
-        
-        $recipes = $this->appendLikeExists($recipes, $id);
-
+        $userId = Auth::id();
+    
+        $likeItems = Like::where('user_id', $userId)
+            ->orderBy('id', 'desc')
+            ->get(['recipe_id', 'id']);
+    
+        $orderedRecipeIds = $likeItems->pluck('recipe_id')->toArray();
+    
+        $recipes = Recipe::whereIn('id', $orderedRecipeIds)
+            ->with('user')
+            ->get()
+            ->keyBy('id');
+    
+        $recipes = collect($orderedRecipeIds)->map(function ($recipeId) use ($recipes, $likeItems) {
+            $recipe = $recipes[$recipeId];
+            $likeItem = $likeItems->firstWhere('recipe_id', $recipeId);
+            $recipe->like_id = $likeItem->id;
+            return $recipe;
+        });
+    
+        $recipes = $this->appendLikeExists($recipes, $userId);
+    
         return response()->json([
             'success' => true,
             'data' => [
@@ -112,13 +126,27 @@ class ApiRecipeController extends Controller
 
     public function historyApi()
     {
-        $id = Auth::id();
+        $userId = Auth::id();
 
-        $recipeIds = History::where('user_id', $id)->pluck('recipe_id');
+        $historyItems = History::where('user_id', $userId)
+            ->orderBy('id', 'desc')
+            ->get(['recipe_id', 'id']);
 
-        $recipes = Recipe::whereIn('id', $recipeIds)->with('user')->get();
+        $orderedRecipeIds = $historyItems->pluck('recipe_id')->toArray();
 
-        $recipes = $this->appendLikeExists($recipes, $id);
+        $recipes = Recipe::whereIn('id', $orderedRecipeIds)
+            ->with('user')
+            ->get()
+            ->keyBy('id');
+
+        $recipes = collect($orderedRecipeIds)->map(function ($recipeId) use ($recipes, $historyItems) {
+            $recipe = $recipes[$recipeId];
+            $historyItem = $historyItems->firstWhere('recipe_id', $recipeId);
+            $recipe->history_id = $historyItem->id;
+            return $recipe;
+        });
+
+        $recipes = $this->appendLikeExists($recipes, $userId);
 
         return response()->json([
             'success' => true,
@@ -132,7 +160,7 @@ class ApiRecipeController extends Controller
     {
         $id = Auth::id();
 
-        $recipes = Recipe::where('user_id', $id)->with('user')->get();
+        $recipes = Recipe::where('user_id', $id)->with('user')->orderBy('id', 'desc')->get();
 
         $recipes = $this->appendLikeExists($recipes, $id);
 
@@ -167,11 +195,18 @@ class ApiRecipeController extends Controller
 
         if ($user) {
             // Add to history if not already added
-            $exists = History::where('user_id', $user->id)
-                ->where('recipe_id', $id)
-                ->exists();
+
+            $history = History::where('user_id', $user->id)
+                ->where('recipe_id', $id);
+            $exists = $history->exists();
 
             if (!$exists) {
+                History::create([
+                    'user_id' => $user->id,
+                    'recipe_id' => $id,
+                ]);
+            } else {
+                $history->delete();
                 History::create([
                     'user_id' => $user->id,
                     'recipe_id' => $id,

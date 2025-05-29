@@ -75,7 +75,7 @@ class UserController extends Controller
 
         $recipeIds = Like::where('user_id', $id)->pluck('recipe_id');
 
-        $recipes = Recipe::whereIn('id', $recipeIds)->get();
+        $recipes = Recipe::whereIn('id', $recipeIds)->orderBy('id', 'desc')->get();
 
         return view('like', compact('recipes'));
     }
@@ -85,7 +85,7 @@ class UserController extends Controller
 
         $recipeIds = History::where('user_id', $id)->pluck('recipe_id');
 
-        $recipes = Recipe::whereIn('id', $recipeIds)->get();
+        $recipes = Recipe::whereIn('id', $recipeIds)->orderBy('id', 'desc')->get();
 
         return view('history', compact('recipes'));
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function myrecipe(){
         $id = Auth::id();
 
-        $recipes = Recipe::where('user_id', $id)->get();
+        $recipes = Recipe::where('user_id', $id)->orderBy('id', 'desc')->get();
 
         return view('myrecipe', compact('recipes'));
 
