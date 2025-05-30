@@ -46,7 +46,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/unlike', [ApiRecipeController::class, 'deleteLikeApi']);
 });
 
-//UPLOAD
+//UPLOAD, EDIT, DELETE
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/upload', [ApiRecipeController::class, 'uploadApi']);
+    Route::get('/edit/{id}', [ApiRecipeController::class, 'editPageApi']);
+    Route::post('/edit/{id}', [ApiRecipeController::class, 'editApi']);
+    Route::post('/delete/{id}', [ApiRecipeController::class, 'destroyApi']);
+});
+
+//ADD COMMENT
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/recipes/{id}/comment', [ApiRecipeController::class, 'addCommentApi']);
 });

@@ -9,6 +9,8 @@ use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 
 class UserController extends Controller
@@ -77,6 +79,29 @@ class UserController extends Controller
 
         $recipes = Recipe::whereIn('id', $recipeIds)->orderBy('id', 'desc')->get();
 
+        foreach ($recipes as $r) {
+            $imagePath = $r->image_url;
+    
+            // Skip if it's an external image
+            if (Str::startsWith($imagePath, ['http://', 'https://'])) {
+                continue;
+            }
+    
+            // Check if the file exists directly in public/
+            if ($imagePath && File::exists(public_path($imagePath))) {
+                // Leave as is
+                continue;
+            }
+    
+            // Check if it exists in public/storage
+            if ($imagePath && File::exists(public_path('storage/' . $imagePath))) {
+                $r->image_url = 'storage/' . $imagePath;
+            } else {
+                // Fallback image
+                $r->image_url = 'images/template_no-image.png';
+            }
+        }
+
         return view('like', compact('recipes'));
     }
 
@@ -87,6 +112,25 @@ class UserController extends Controller
 
         $recipes = Recipe::whereIn('id', $recipeIds)->orderBy('id', 'desc')->get();
 
+        foreach ($recipes as $r) {
+            $imagePath = $r->image_url;
+    
+            if (Str::startsWith($imagePath, ['http://', 'https://'])) {
+                continue;
+            }
+    
+            if ($imagePath && File::exists(public_path($imagePath))) {
+                // Leave as is
+                continue;
+            }
+    
+            if ($imagePath && File::exists(public_path('storage/' . $imagePath))) {
+                $r->image_url = 'storage/' . $imagePath;
+            } else {
+                $r->image_url = 'images/template_no-image.png';
+            }
+        }
+
         return view('history', compact('recipes'));
     }
 
@@ -94,6 +138,24 @@ class UserController extends Controller
         $id = Auth::id();
 
         $recipes = Recipe::where('user_id', $id)->orderBy('id', 'desc')->get();
+
+        foreach ($recipes as $r) {
+            $imagePath = $r->image_url;
+    
+            if (Str::startsWith($imagePath, ['http://', 'https://'])) {
+                continue;
+            }
+    
+            if ($imagePath && File::exists(public_path($imagePath))) {
+                continue;
+            }
+    
+            if ($imagePath && File::exists(public_path('storage/' . $imagePath))) {
+                $r->image_url = 'storage/' . $imagePath;
+            } else {
+                $r->image_url = 'images/template_no-image.png';
+            }
+        }
 
         return view('myrecipe', compact('recipes'));
 

@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Recipe;
 use App\Models\Like;
 use App\Models\History;
 use App\Models\Ingredient;
 use App\Models\Step;
+use App\Models\Comment;
+use App\Models\User;
 use App\Services\RecipeRecommendationService;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -189,6 +192,7 @@ class ApiRecipeController extends Controller
             ->join('users', 'comments.user_id', '=', 'users.id')
             ->where('comments.recipe_id', $id)
             ->select('comments.*', 'users.username', 'users.profilepicture_url')
+            ->orderBy('comments.id', 'desc')
             ->get();
 
         $likeExists = false;
@@ -320,6 +324,155 @@ class ApiRecipeController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Sucessfully created new recipe!'
+        ]);
+    }
+
+    public function editPageApi($id)
+    {
+        $userId = Auth::id();
+        $recipe = Recipe::with('user')->findOrFail($id);
+
+        if ($userId != $recipe->user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Forbidden Access to edit Recipe'
+            ], 403);
+        }
+
+        $ingredient = Ingredient::findOrFail($id);
+        $bahan = explode(';', $ingredient->nama_bahan);
+
+        $steps = Step::findOrFail($id);
+        $langkah = explode(';', $steps->deskripsi_langkah);
+
+        return response()->json([
+            'recipe' => $recipe,
+            'ingredients' => $bahan,
+            'steps' => $langkah,
+        ]);
+    }
+
+    public function editApi(Request $request, $id)
+    {
+        $userId = Auth::id();
+        if (!$userId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized'
+            ], 400);
+        }
+
+        $incomingFields = $request->validate([
+            'judul' => ['string', 'max:200'],
+            'deskripsi' => ['nullable', 'string'],
+            'porsi' => ['integer'],
+            'waktu' => ['integer'], 
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], 
+            'langkah' => ['string'],
+            'bahan' => ['string']
+        ]);
+
+        $recipe = Recipe::findOrFail($id);
+
+        if ($userId != $recipe->user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Forbidden Access to edit Recipe'
+            ], 403);
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = Str::uuid() . '.jpeg'; // Always convert to jpeg
+            $imagePath = 'images/' . $filename;
+
+            $manager = new ImageManager(new Driver());
+
+            $compressed = $manager->read($image)->scaleDown(1280, null)->toJpeg(75);
+
+            $incomingFields['image'] = $imagePath;
+
+            if ($recipe->image_url) {
+                Storage::delete('public/' . $recipe->image_url);
+            }
+
+            // $imagePath = $request->file('image')->store('images', 'public');
+            Storage::disk('public')->put($imagePath, $compressed);
+
+            $recipe->image_url = $imagePath; 
+        }
+
+        $updateData = [
+            'judul' => $incomingFields['judul'],
+            'deskripsi' => $incomingFields['deskripsi'],
+            'porsi' => $incomingFields['porsi'],
+            'waktu' => $incomingFields['waktu'],
+        ];
+
+        if (isset($incomingFields['image'])) {
+            $updateData['image_url'] = $incomingFields['image'];
+        }
+
+        $recipe->update($updateData);
+
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->update([
+            'nama_bahan' => $incomingFields['bahan']
+        ]);
+
+        $steps = Step::findOrFail($id);
+        $steps->update([
+            'deskripsi_langkah' => $incomingFields['langkah']
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sucessfully edited recipe!'
+        ]);
+    }
+
+    public function addCommentApi(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'isi_komentar' => 'required|string|max:500',  
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        Comment::create([
+            'recipe_id' => $id,                          
+            'user_id' => Auth::id(),                      
+            'isi_komentar' => $request->isi_komentar, 
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sucessfully added new comment!'
+        ]);
+    }
+
+    public function destroyApi($id)
+    {    
+        $recipe = Recipe::findOrFail($id);
+
+        $userId = Auth::id();
+        if ($userId != $recipe->user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Forbidden Access to delete Recipe'
+            ], 403);
+        }
+
+        Ingredient::where('recipe_id', $id)->delete();
+        Step::where('recipe_id', $id)->delete();
+
+        $recipe->delete();
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Sucessfully deleted recipe!'
         ]);
     }
 }
