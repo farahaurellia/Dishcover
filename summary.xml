@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PDepend>
+  <Packages>
+    <Package name="App\Http\Controllers">
+      <Stats>
+        <TotalClasses>4</TotalClasses>
+        <ConcreteClasses>3</ConcreteClasses>
+        <AbstractClasses>1</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>5</Ce>
+        <A>0.25</A>
+        <I>1</I>
+        <D>0.25</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Http\Controllers\CommentController.php">CommentController</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Http\Controllers\RecipeController.php">RecipeController</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Http\Controllers\UserController.php">UserController</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Http\Controllers\Controller.php">Controller</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package></Package>
+        <Package>App\Models</Package>
+        <Package>App\Services</Package>
+        <Package>Illuminate\Http</Package>
+        <Package>Illuminate\Support\Facades</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+    <Package name="App\Models">
+      <Stats>
+        <TotalClasses>7</TotalClasses>
+        <ConcreteClasses>7</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>2</Ca>
+        <Ce>2</Ce>
+        <A>0</A>
+        <I>0.5</I>
+        <D>0.5</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\Comment.php">Comment</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\History.php">History</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\Ingredient.php">Ingredient</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\Like.php">Like</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\Recipe.php">Recipe</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\Step.php">Step</Class>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Models\User.php">User</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package>Illuminate\Database\Eloquent</Package>
+        <Package>Illuminate\Foundation\Auth</Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>App\Http\Controllers</Package>
+        <Package>App\Services</Package>
+      </UsedBy>
+    </Package>
+    <Package name="App\Providers">
+      <Stats>
+        <TotalClasses>1</TotalClasses>
+        <ConcreteClasses>1</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>1</Ce>
+        <A>0</A>
+        <I>1</I>
+        <D>0</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Providers\AppServiceProvider.php">AppServiceProvider</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package>Illuminate\Support</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+    <Package name="App\Services">
+      <Stats>
+        <TotalClasses>1</TotalClasses>
+        <ConcreteClasses>1</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>1</Ca>
+        <Ce>2</Ce>
+        <A>0</A>
+        <I>0.66666666666667</I>
+        <D>0.33333333333333</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="C:\Users\Dell.RIKCY\Herd\Dishcover\app\Services\RecipeRecommendationService.php">RecipeRecommendationService</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package>App\Models</Package>
+        <Package>Phpml\FeatureExtraction</Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>App\Http\Controllers</Package>
+      </UsedBy>
+    </Package>
+  </Packages>
+  <Cycles/>
+</PDepend>

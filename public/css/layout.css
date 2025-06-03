@@ -5,14 +5,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Ensures consistent box model */
+  box-sizing: border-box; 
   font-family: 'Poppins',Times;
 }
 
 .content {
-  max-height: 100%; /* Ensure full height usage */
+  max-height: 100%; 
   width: 100%;
-  background-color: #F5F5F5; /* Page background */
+  background-color: #F5F5F5; 
 }
 
 .greeting {
@@ -32,10 +32,14 @@ html, body {
 
 .modal-content-login {
   border-radius: 20px;
-  height: 380px;
-  width: 400px;
+  min-height: 380px; 
+  width: 400px; 
   padding: 10px;
+  max-height: 90vh;
+  overflow-y: auto; 
+  transition: min-height 0.3s ease; 
 }
+
 
 .modal-header-login {
   border: 0;
@@ -72,8 +76,8 @@ html, body {
 }
 
 .btn-login-container {
-  display: flex; /* Enable flexbox */
-  justify-content: center; /* Center horizontally */
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -91,7 +95,7 @@ html, body {
   top: 20px;
   right: 20px;
   width: 250px;
-  height: 190px;
+  height: 250px;
   margin: 0;
   transform: none;
 }
@@ -123,5 +127,13 @@ html, body {
 .btn-logout:hover {
   background-color: #e55a5a;
   color: white;
+}
+
+.btn-resep {
+  padding: 10px;
+  margin: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
 }
 

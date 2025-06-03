@@ -13,8 +13,14 @@
             <p> Hasil untuk <span>{{$query}}</span></p>
         </div>  
     </div>
+    @if ($recipes->isEmpty())
+    <div class="not-found">
+        <p>Resep tidak ditemukan</p>
+    </div>
+    @else 
     <div class="recipes">
-        @forelse ($recipes as $recipe)
+        @foreach ($recipes as $recipe)
+        <a href="{{ route('show', $recipe->id) }}" class="recipe-card-link">
                     <div class="recipe-card">
                         <div class="image-wrapper">                        
                             <img src="{{ asset($recipe->image_url) }}" alt="Recipe Image">
@@ -32,12 +38,12 @@
                             </div>
                             <h5>{{ $recipe->judul}}</h5>
                             <p>{{ $recipe->deskripsi }}</p>
-                            <p>Recipe by {{ $recipe->user->username }}</p>
+                            <p>Recipe by <span style="color: #E35778"> {{ $recipe->user->username }} </span></p>
                         </div>
                     </div>
-            @empty 
-                <p>No recipes found.</p>
-            @endforelse
+        </a>
+        @endforeach
     </div>
+    @endif
     </div>
 </x-layout>

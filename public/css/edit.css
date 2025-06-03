@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 .left-section {
-    background: linear-gradient(90deg, #AEDC81 5%, #8DD14F 48%);
+    background-color: #405A3F;
     color: white;
     padding: 40px;
     flex: 1;
@@ -32,13 +32,12 @@ body {
     font-weight: bold;
     font-size: 30px;
 }
-.left-section span {
-    color: #EC5A7E;
-}
+
 .left-section p{
     margin: 0;
     text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.122);
 }
+
 .container-title {
     height: 100%;
     width: 25%;
@@ -71,7 +70,7 @@ body {
 }
 
 .right-section label {
-    color: #000000;
+    color: #75A47F;
     font-weight: 600;
 }
 
@@ -86,7 +85,7 @@ body {
 }
 
 .form-control {
-    border: 2px solid#8DD14F; 
+    border: 2px solid#75A47F; 
     border-radius: 8px;
     padding: 10px;
     font-size: 16px;
@@ -106,14 +105,14 @@ body {
 }
 
 .input-group-text {
-    border: 2px solid#8DD14F; 
+    border: 2px solid#75A47F; 
     border-radius: 8px;
-    background-color: #8DD14F;
+    background-color: #75A47F;
     color: white;
 }
 
 .submit-button {
-    background-color: #8DD14F;
+    background-color: #405A3F;
     color: white;
     border: none;
     padding: 10px;
@@ -124,7 +123,7 @@ body {
     font-size: 25px;
 }
 .submit-button:hover {
-    background-color: #8DD14F;
+    background-color: #334932;
 }
 
 .close-button {
@@ -138,5 +137,25 @@ body {
     display: flex;
     justify-content: center;
     height: 60px;
-    margin: 50px;
+    margin: 30px 20px 50px 0;
 }
+
+.delete-button {
+    background-color: #F6664E;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 150px;
+    font-size: 25px;
+}
+.delete-button:hover {
+    background-color: #d04f39;
+}
+
+.edit-buttons {
+    display: flex;
+}
+
