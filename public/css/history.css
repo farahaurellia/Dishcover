@@ -29,9 +29,7 @@ body {
   align-items: center;
 }
 
-.logo {
-  /* Style your logo appropriately */
-}
+
 
 .nav-item {
   margin-left: 20px;
@@ -103,7 +101,7 @@ body {
 }
 
 .btnhistory {
-  background-color: #3c763d;
+  background-color: #8DD14F;
   color: #fff;
   padding: 9px 15px; /* Atur jarak di dalam tombol */
   border: none;
@@ -211,22 +209,9 @@ transform: scale(1.1);
   margin-right: 5px;
 }
 
-.porsi {
-  background-color: #E6A4B4;  
-  padding: 3px 7px 3px 3px;        
-  border-radius: 15px;
-  margin-right: 5px;
-  text-align: center;        
-  display: flex;
-}
 
-.waktu {
-  background-color: #BACD92;  
-  padding: 3px 6px 3px 3px;          
-  border-radius: 15px;
-  text-align: center;        
-  display: flex;
-}
+
+
 
 
 

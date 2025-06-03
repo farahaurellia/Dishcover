@@ -1,18 +1,20 @@
 body {
     background-color: #f0f0f0; /* Light gray background */
     height: 100%;
+    overflow: hidden;
   }
   
   .container {
     display: flex;
     justify-content: center; /* Posisikan di tengah secara horizontal */
     align-items: center;    /* Posisikan di tengah secara vertikal */
-    height: 80vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
+    height: 100vh;      /* Pastikan tinggi elemen mencakup seluruh layar */
     width: 100%;            /* Lebar penuh */
     background-color: #ffffff; /* Pastikan background putih */
     text-align: center;
     top: 50%; /* Posisikan elemen 50% dari atas layar */
     left: 50%; /* Posisikan elemen 50% dari kiri layar */
+   
 }
 
   
@@ -25,9 +27,7 @@ body {
     align-items: center;
   }
   
-  .logo {
-    /* Style your logo appropriately */
-  }
+  
   
   .nav-item {
     margin-left: 20px;
@@ -35,6 +35,7 @@ body {
   
   .content {
     background-color: #fff;
+
     padding: 20px;
     text-align: center;
     min-height: 100vh;
@@ -98,7 +99,7 @@ body {
 }
 
 .btnlike {
-    background-color: #3c763d;
+    background-color: #8DD14F;
     color: #fff;
     padding: 9px 15px; /* Atur jarak di dalam tombol */
     border: none;
@@ -206,22 +207,9 @@ transform: scale(1.1);
   margin-right: 5px;
 }
 
-.porsi {
-  background-color: #E6A4B4;  
-  padding: 3px 7px 3px 3px;        
-  border-radius: 15px;
-  margin-right: 5px;
-  text-align: center;        
-  display: flex;
-}
 
-.waktu {
-  background-color: #BACD92;  
-  padding: 3px 6px 3px 3px;          
-  border-radius: 15px;
-  text-align: center;        
-  display: flex;
-}
+
+
 
 
 

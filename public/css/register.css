@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 .left-section {
-    background-color: #405A3F;
+    background: linear-gradient(90deg, #AEDC81 5%, #8DD14F 48%);
     color: white;
     padding: 40px;
     flex: 1;
@@ -33,7 +33,7 @@ body {
     font-size: 30px;
 }
 .left-section span {
-    color: #EC5A7E;
+    color: #F6664E;
 }
 .left-section p{
     margin: 0;
@@ -70,7 +70,7 @@ body {
 }
 
 .form-register .form-control {
-    border: 2px solid#75A47F; 
+    border: 2px solid #8DD14F; 
     border-radius: 8px;
     padding: 10px;
     font-size: 16px;
@@ -79,7 +79,7 @@ body {
 }
 
 .submit-button {
-    background-color: #EC5A7E;
+    background-color: #F6664E;
     color: white;
     border: none;
     padding: 10px;
@@ -90,7 +90,7 @@ body {
     font-size: 25px;
 }
 .submit-button:hover {
-    background-color: #c95672;
+    background-color: #F6664E;
 }
 .close-button {
     position: absolute;
