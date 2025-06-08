@@ -28,7 +28,7 @@ RUN composer install --optimize-autoloader --no-dev
 RUN chown -R www-data:www-data /var/www
 
 # Expose port 8000
-EXPOSE 8000
+EXPOSE 8080
 
 # Start Laravel built-in server (replace with Nginx if needed)
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=8080
