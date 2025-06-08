@@ -52,7 +52,7 @@ html, body {
 }
 
 .form-login .form-control {
-  border: 3px solid#75A47F; 
+  border: 3px solid #8DD14F; 
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
@@ -60,7 +60,7 @@ html, body {
 }
 
 .modal-body-login button{
-  background-color: #75A47F;
+  background-color: #8DD14F;
   color: white;
   font-weight: bold;
   border: 0;
@@ -70,7 +70,7 @@ html, body {
 }
 
 .modal-body-login button:hover{
-  background-color: #699472;
+  background-color: #8DD14F;
   color: white;
   border: 0;
 }
@@ -81,7 +81,9 @@ html, body {
   align-items: center;
 }
 
-
+.text-y{
+  color: #F6664E;
+}
 
 
 .modal-body-user {

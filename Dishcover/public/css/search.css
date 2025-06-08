@@ -1,24 +1,13 @@
  /* Recipes Container */
 
- html, body {
-  height: 100%; /* Ensure the HTML and body elements cover the full viewport height */
-  margin: 0; /* Remove default margins */
-}
-
 .body {
-  min-height: 100%; /* Allow the body to expand if content exceeds the viewport */
-  display: flex;
-  flex-direction: column; /* Ensures the layout flows naturally */
+  height: 100%;
 }
 
-.search-page {
-  width: 100%;
-  height: 100%;
-  min-height: 100vh; 
-  box-sizing: border-box; /* Includes padding and border in the element's total size */
-  overflow: hidden; /* Prevent accidental overflow */
-  background-color: #F5F5F5;
-}
+ .search-page {
+    width: 100%;
+    height: 100vh;
+ }
  .title {
     font-weight: bold;
     font-size: 25px;
@@ -34,7 +23,7 @@
  }
 
  .title-text span{
-    color: #E35778;
+    color: #F6664E;
  }
 
  .back-btn{
@@ -44,16 +33,15 @@
  }
 
  .recipes {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-  column-gap: 50px;
-  row-gap: 20px;
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  height: auto; /* Allow height to be determined by content */
-  overflow: visible; /* Prevent cutting off overflowing content */
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    column-gap: 50px;
+    row-gap: 20px;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; 
+    margin-bottom: 20px;
+  }
   
   .recipe-card {
     overflow: hidden;
@@ -123,7 +111,6 @@
   .recipe-info p {
     margin: 0;
     font-size: 13px;
-    font-weight: 500;
   }
   
   .tags {
@@ -158,20 +145,6 @@
     border: 2px solid #F6664E;
     color: #F6664E;
   }
-  
-
-  .not-found {
-    font-size: large;
-    font-weight: bold;
-    height: 60vh;
-    width: 100%;
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Horizontally centers the text */
-    align-items: center; /* Vertically centers the text */
-    text-align: center; /* Optional for multi-line text alignment */
-  }
-  
-
   
   
   
