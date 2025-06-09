@@ -16,7 +16,7 @@
                 <input type="password" name="loginpassword"  class="form-control" required>
             </div>
             <div class="mb-3 text-end">
-                <a href="/register" class="text-decoration-none text-muted">Tidak punya akun? <span style="color: #F6664E;" class="text-y">Daftar </span></a>
+                <a href="/register" class="text-decoration-none text-muted">Tidak punya akun? <span class="text-danger">Daftar</span></a>
             </div>
             <button type="submit" class="btn btn-success w-100">Masuk</button>
         </form>

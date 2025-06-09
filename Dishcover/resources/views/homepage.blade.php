@@ -127,7 +127,48 @@
             </div>
 
             <div class="footer">
-                <img src="{{ asset('images/footer.png') }}" alt="footer"> 
-                <p>©2024 DishCover</p>                   
+                <div class="container">
+                    <div class="container-top">
+                    <div class="signup">
+                        <h5 class="brand">
+                        <span class="logo">
+                            <img src="{{ asset('images/logo.png') }}" alt="logo">
+                        </span>
+                        <span class="name">DishCover</span>
+                        </h5>
+                        <p>Stay in the loop and sign up:</p>
+                        <form class="email-form">
+                        <input type="email" placeholder="Enter your email" required />
+                        <button type="submit">&#8594;</button>
+                        </form>
+                    </div>
+
+                    <div class="links">
+                        <div>
+                        <span class="name">Company</span>
+                        <a href="/">Home</a>
+                        </div>
+                        <div>
+                        <span class="name">Documentation</span>
+                        <a href="#">Contact</a>
+                        </div>
+                        <div>
+                        <span class="name">Social</span>
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="container-bottom">
+                    <hr />
+                    <div class="bottom-content">
+                        <p>Made with <span class="heart">&hearts;</span> by DishCover Team</p>
+                        <p>Terms & Condition</p>
+                    </div>
+                    </div>
+
+                </div>
             </div>
+        </div>
 </x-layout>

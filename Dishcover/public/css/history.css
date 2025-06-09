@@ -2,8 +2,9 @@ body {
   font-family: 'Poppins';
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   height: 100%;
+  min-height: 100vh;
 }
 
 
@@ -21,7 +22,7 @@ body {
 
 
 .header {
-  background-color: #287428; /* Dark green for the header */
+  background-color: #8DD14F; /* Dark green for the header */
   color: #fff;
   padding: 15px;
   display: flex;
@@ -29,7 +30,9 @@ body {
   align-items: center;
 }
 
-
+.logo {
+  /* Style your logo appropriately */
+}
 
 .nav-item {
   margin-left: 20px;
@@ -40,7 +43,6 @@ body {
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  min-height: 100vh;
 }
 
 .empty-message {
@@ -49,7 +51,7 @@ body {
 }
 
 .empty-message .cta {
-  color: #287428; /* Green for the call to action */
+  color: #8DD14F; /* Green for the call to action */
   text-decoration: none;
 }
 
@@ -141,7 +143,6 @@ body {
   height: 170px;             
   object-fit: cover;       
   object-position: center;   
-  border-bottom: 1px solid #ddd;
   border-radius: 15px;
 }
 
@@ -196,6 +197,7 @@ transform: scale(1.1);
 .recipe-info p {
   margin: 0;
   font-size: 13px;
+  font-weight: 500;
 }
 
 .tags {
@@ -205,12 +207,31 @@ transform: scale(1.1);
   font-size: 13px;
 }
 
-.tags svg {
-  margin-right: 5px;
+.tags img{
+  width: 20px;
+  height: 20px;
+  margin: 0 3px 0 3px;
+  fill: #F6664E !important;
 }
 
+.porsi { 
+  padding: 3px 7px 3px 3px;        
+  border-radius: 15px;
+  margin-right: 5px;
+  text-align: center;        
+  display: flex;
+  border: 2px solid #F6664E;
+  color: #F6664E;
+}
 
-
+.waktu { 
+  padding: 3px 6px 3px 3px;          
+  border-radius: 15px;
+  text-align: center;        
+  display: flex;
+  border: 2px solid #F6664E;
+  color: #F6664E;
+}
 
 
 

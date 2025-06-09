@@ -9,25 +9,24 @@
   background: linear-gradient(90deg, #AEDC81 5%, #8DD14F 48%);
   color: #101010;
   padding: 40px;
-  flex: 1;
+  flex: 1; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
-  width: 100%;
+  height: 100vh; 
+  width: 100%; 
   font-weight: bold;
   font-size: 30px;
-  box-sizing: border-box;
-  z-index: 40%;
+  box-sizing: border-box; 
+  z-index: 40%; 
   max-height: 100vh;
 }
 
-
 .left-section {
-  margin: 10px; /* Atur jarak luar (di luar elemen) */
-  padding: 10px; /* Atur jarak dalam (di dalam elemen) */
-  gap: 20px; /* Jika elemen dalamnya menggunakan flexbox atau grid */
+  margin: 10px; 
+  gap: 20px; 
+  width: 35%;
 }
 
 
@@ -55,27 +54,27 @@
 
 .img-wrapper {
   width: 100%;
-  height: 500px; /* Menambah sedikit tinggi */
+  height: 300px; 
   overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
-  margin-left: 30px;
+  border-radius: 30px;
 }
 
 .img-wrapper img {
-  width: 400px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transform: translateY(-100px);
 }
+
 
 
 
 
 .recipe-info {
-    margin: 0px;
+    margin-top: 30px;
   }
   
   .recipe-info h5 {
@@ -88,8 +87,6 @@
     margin: 0;
     font-size: 20px;
     color: #fff;
-    transform: translateY(-100px);
-    margin-left: 45px;
   }
   
   .tags {
@@ -97,12 +94,33 @@
     margin: 10px 0 5px 0;
     align-items: center;
     font-size: 13px;
-    transform: translateY(-100px);
-    margin-left: 45px;
   }
   
-  .tags svg {
+  .tags img{
+    width: 20px;
+    height: 20px;
+    margin: 0 3px 0 3px;
+    fill: white !important;
+  }
+  
+  .porsi { 
+    padding: 3px 7px 3px 3px;        
+    border-radius: 15px;
     margin-right: 5px;
+    text-align: center;        
+    display: flex;
+    border: 2px solid white;
+    color: white;
+  }
+  
+  .waktu { 
+    padding: 3px 6px 3px 3px;          
+    border-radius: 15px;
+    text-align: center;        
+    display: flex;
+    border: 2px solid white;
+    color: white;
+    margin-right: 10px;
   }
 
   .right-side p{
@@ -140,7 +158,7 @@
 }
 
 .back-btn:hover svg path {
-  fill: #BACD92; /* Warna ikon saat hover */
+  fill: #8DD14F; /* Warna ikon saat hover */
 }
 
 .profile-image {
@@ -161,7 +179,7 @@
 .btn-btn-comment svg {
   width: 36px;
   height: 29px;
-  fill: #405A3F;
+  fill: #8DD14F;
 }
 
 .btn-btn-comment {
@@ -174,7 +192,7 @@
 }
 
 .btn-btn-comment:hover svg {
-  fill: #8DD14F; /* Warna sedikit lebih gelap saat hover */
+  fill: #72c129; /* Warna sedikit lebih gelap saat hover */
 }
 
 .like-button {
@@ -184,12 +202,11 @@
   font-size: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: color 0.3s ease, transform 0.3s ease;
-  transform: translateX(-10px); /* Geser ke kiri sebanyak 10px */
 } 
 
 .like-button svg {
-  margin-right: 8px;
   transition: fill 0.3s ease;
 }
 
@@ -201,5 +218,33 @@
   fill:#E35778; /* Warna ikon merah ketika disukai */
 }
 
+.comments {
+  flex-direction: row;
+}
 
-    
+.download-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}  
+
+.tags-right {
+  margin-left: auto;
+  display: flex;
+}
+
+.tags-left {
+  display: flex;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}  

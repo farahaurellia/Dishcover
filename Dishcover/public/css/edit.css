@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 .left-section {
-    background-color: #405A3F;
+    background: linear-gradient(90deg, #AEDC81 5%, #8DD14F 48%);
     color: white;
     padding: 40px;
     flex: 1;
@@ -70,7 +70,7 @@ body {
 }
 
 .right-section label {
-    color: #75A47F;
+    color: #8DD14F;
     font-weight: 600;
 }
 
@@ -85,7 +85,7 @@ body {
 }
 
 .form-control {
-    border: 2px solid#75A47F; 
+    border: 2px solid#8DD14F; 
     border-radius: 8px;
     padding: 10px;
     font-size: 16px;
@@ -105,14 +105,14 @@ body {
 }
 
 .input-group-text {
-    border: 2px solid#75A47F; 
+    border: 2px solid#8DD14F; 
     border-radius: 8px;
-    background-color: #75A47F;
+    background-color: #8DD14F;
     color: white;
 }
 
 .submit-button {
-    background-color: #405A3F;
+    background-color: #8DD14F;
     color: white;
     border: none;
     padding: 10px;
@@ -123,7 +123,7 @@ body {
     font-size: 25px;
 }
 .submit-button:hover {
-    background-color: #334932;
+    background-color: #73bf2d;
 }
 
 .close-button {

@@ -21,7 +21,7 @@ html, body {
 }
 
 .greeting span{
-  color: #405A3F;
+  color: #8DD14F;
 }
 
 .modal-dialog-centered {
@@ -52,7 +52,7 @@ html, body {
 }
 
 .form-login .form-control {
-  border: 3px solid #8DD14F; 
+  border: 3px solid#8DD14F; 
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
@@ -70,7 +70,7 @@ html, body {
 }
 
 .modal-body-login button:hover{
-  background-color: #8DD14F;
+  background-color: #75c030;
   color: white;
   border: 0;
 }
@@ -81,9 +81,7 @@ html, body {
   align-items: center;
 }
 
-.text-y{
-  color: #F6664E;
-}
+
 
 
 .modal-body-user {

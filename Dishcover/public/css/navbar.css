@@ -6,17 +6,17 @@
 .navbar {
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #AEDC81 5%, #8DD14F 48%);
+  background: linear-gradient(to right, #AEDC81 5%, #8DD14F 48%); /* Background navbar */
   box-sizing: border-box;
-  padding: 10px 20px;
-  position: fixed;
+  padding: 10px 20px; /* Padding inside navbar */
+  position: fixed; /* Fixed at the top */
   top: 0;
-  width: 100%;
+  width: 100%; /* Full width */
   height: 90px;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it's on top of other elements */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; 
   overflow: hidden;
 }
 
@@ -31,6 +31,22 @@
 
   
   /* Logo */
+.navbar-logo {
+  width: 100px; /* Set the width of the logo container */
+  height: 60px; /* Set the height of the logo container */
+  background-color: inherit; /* Inherit background color */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the logo */
+  margin-right: 0px;
+  overflow: hidden; /* Ensures the image doesn't overflow the container */
+}
+
+.navbar-logo img {
+  width: 100%; /* Make the image width 100% of the container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Prevent squishing, keeps the aspect ratio intact */
+}
   
   /* Menu */
   .navbar-menu {
@@ -57,7 +73,7 @@
   
   /* Hover Effect */
   .navbar-menu a:hover {
-    color: #75A47F; /* Warna saat hover */
+    color: #cbe6b2; /* Warna saat hover */
   }
   
   .right-section {

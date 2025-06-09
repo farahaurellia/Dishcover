@@ -13,7 +13,7 @@
         <div class="left-section">
             <div class="container-title">
                 <p>Gabung bersama </p>
-                <p>Dish<span>Cover!</span></p>
+                <p style="color: #75A47F">Dish<span>Cover!</span></p>
             </div>
         </div>
             <div class="right-section">
