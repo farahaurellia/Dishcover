@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Services\RecipeRecommendationService;
 use PDF;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class RecipeController extends Controller
 {    
@@ -49,8 +53,33 @@ class RecipeController extends Controller
 
         $latestRecipe = Recipe::orderBy('id', 'desc')->take(5)->get();
 
-
         $recipes = Recipe::take(6)->get();
+
+        $collections = [&$recommendations, &$latestRecipe, &$recipes];
+        foreach ($collections as &$collection) {
+            foreach ($collection as $r) {
+                $imagePath = $r->image_url;
+        
+                // Skip if it's an external image
+                if (Str::startsWith($imagePath, ['http://', 'https://'])) {
+                    continue;
+                }
+        
+                // Check if the file exists directly in public/
+                if ($imagePath && File::exists(public_path($imagePath))) {
+                    // Leave as is
+                    continue;
+                }
+        
+                // Check if it exists in public/storage
+                if ($imagePath && File::exists(public_path('storage/' . $imagePath))) {
+                    $r->image_url = 'storage/' . $imagePath;
+                } else {
+                    // Fallback image
+                    $r->image_url = 'images/template_no-image.png';
+                }
+            }
+        }
 
         return view('homepage', compact('recommendations', 'recipes', 'latestRecipe'));
     }
@@ -68,7 +97,16 @@ class RecipeController extends Controller
             'bahan' => ['required', 'string']
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        $image = $request->file('image');
+        $filename = Str::uuid() . '.jpeg'; // Always convert to jpeg
+        $imagePath = 'images/' . $filename;
+
+        $manager = new ImageManager(new Driver());
+
+        $compressed = $manager->read($image)->scaleDown(1280, null)->toJpeg(75);
+
+        // $imagePath = $request->file('image')->store('images', 'public');
+        Storage::disk('public')->put($imagePath, $compressed);
 
         $recipe = Recipe::create([
             'user_id' => auth()->id(), 
@@ -106,6 +144,18 @@ class RecipeController extends Controller
     public function show($id)
     {
         $recipe = Recipe::findOrFail($id); 
+
+        $imagePath = $recipe->image_url;
+        
+        if (!Str::startsWith($imagePath, ['http://', 'https://'])) {
+            if ($imagePath && File::exists(public_path($imagePath))) {
+                // Do nothing, image_url is already valid
+            } elseif ($imagePath && File::exists(public_path('storage/' . $imagePath))) {
+                $recipe->image_url = 'storage/' . $imagePath;
+            } else {
+                $recipe->image_url = 'images/template_no-image.png';
+            }
+        }
 
         $ingredient = Ingredient::findOrFail($id);
         $bahan = explode(';', $ingredient->nama_bahan);
@@ -261,17 +311,17 @@ class RecipeController extends Controller
 
     public function destroy($id)
     {    
-            $recipe = Recipe::findOrFail($id);
-            $recipe->delete();
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+
+        // Ensure these records exist before deleting
+        $ingredient = Ingredient::where('recipe_id', $id);
+        $ingredient->delete();
+
+        $step = Step::where('recipe_id', $id);
+        $step->delete();
     
-            // Ensure these records exist before deleting
-            $ingredient = Ingredient::where('recipe_id', $id);
-            $ingredient->delete();
-    
-            $step = Step::where('recipe_id', $id);
-            $step->delete();
-        
-            return redirect('/')->with('success', 'Recipe deleted successfully!');
+        return redirect('/')->with('success', 'Recipe deleted successfully!');
     }
 
 }
